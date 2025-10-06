@@ -1,5 +1,8 @@
-#pragma once
+//------------------------------------------------------------------------
+// Copyright(c) 2025 Anis Dadou (GullDSP)
+//------------------------------------------------------------------------
 
+#pragma once
 #include "public.sdk/source/vst/vsteditcontroller.h"
 #include "CirculateHelpers.h"
 #include "LogRangeParameter.h"

@@ -1,3 +1,6 @@
+//------------------------------------------------------------------------
+// Copyright(c) 2025 Anis Dadou (GullDSP)
+//------------------------------------------------------------------------
 #pragma once
 #include "CirculateHelpers.h"
 #include "CirculateParameters.h"

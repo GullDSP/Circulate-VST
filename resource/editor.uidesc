@@ -86,7 +86,7 @@
 				"Size": "5, 5"
 			},
 			"UITemplateController": {
-				"SelectedTemplate": "NoteControl"
+				"SelectedTemplate": "view"
 			},
 			"UIEditController": {
 				"EditViewScale": "1",
@@ -571,7 +571,7 @@
 							"text-inset": "0, 0",
 							"text-rotation": "0",
 							"text-shadow-offset": "1, 1",
-							"title": "13Sounds",
+							"title": "GullDSP",
 							"transparent": "false",
 							"value-precision": "2",
 							"wants-focus": "false",
@@ -840,7 +840,7 @@
 							"skip-handle-drawing": "false",
 							"transparent": "false",
 							"uidesc-label": "MidiNoteKnob",
-							"value-inset": "3.5",
+							"value-inset": "4.5",
 							"wants-focus": "true",
 							"wheel-inc-value": "0.1",
 							"zoom-factor": "1.5"

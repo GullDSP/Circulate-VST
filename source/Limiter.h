@@ -1,3 +1,7 @@
+//------------------------------------------------------------------------
+// Copyright(c) 2025 Anis Dadou (GullDSP)
+//------------------------------------------------------------------------
+
 #include <math.h>
 /// <summary>
 /// A limiter which is completely linear up to the threshold, 

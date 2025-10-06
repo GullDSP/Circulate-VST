@@ -1,5 +1,5 @@
 //------------------------------------------------------------------------
-// Copyright(c) 2025 Dadou.
+// Copyright(c) 2025 Anis Dadou (GullDSP)
 //------------------------------------------------------------------------
 
 #include "processor.h"
@@ -18,9 +18,9 @@ using namespace CirculateVST;
 //  VST Plug-in Entry
 //------------------------------------------------------------------------
 
-BEGIN_FACTORY_DEF ("13Sounds", 
-			       "https://github.com/13sounds/", 
-			       "mailto:13soundsdev@gmail.com")
+BEGIN_FACTORY_DEF ("GullDSP", 
+			       "https://github.com/GullDSP/", 
+			       "mailto:GullDSPDev@gmail.com")
 
 	//---First Plug-in included in this factory-------
 	// its kVstAudioEffectClass component
