@@ -3,7 +3,7 @@
 <p>&nbsp;</p>
 <img width="304" height="160" alt="XXXXXXXX_snapshot_2 0x" src="https://github.com/user-attachments/assets/c7016aa4-c912-46bc-a521-47cd146c17d5" />
 <h3>Download</h3>
-https://github.com/13sounds/Circulate-VST/releases
+https://github.com/GullDSP/Circulate/releases
 <h3>Features</h3>
 <ul>
 <li>Sample accurate parameters and automation. Suitable for fast and complex automation and control via DAW modulators (for example Ableton LFOs)</li>
