@@ -112,7 +112,10 @@ public:
 			currentSample = getLimitedSample(currentSample);
 			// Add feedback, and compensate gain
 			currentSample = inBuffer[s] + (feedback * currentSample);
-			currentSample *= sqrt(1.5f - abs(feedback));
+
+			// Gain compensation
+			currentSample *= sqrtf(1.0f - (abs(feedback) / 1.5f)   );
+
 
 			for (int i = 0; i < mNumActiveStages; i++) {
 				// Apply each allpass
