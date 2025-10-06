@@ -1,0 +1,361 @@
+
+---
+events:
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-3.31/Modules/CMakeDetermineSystem.cmake:205 (message)"
+      - "CMakeLists.txt:13 (project)"
+    message: |
+      The system is: Windows - 10.0.26100 - AMD64
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-3.31/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/Program Files/CMake/share/cmake-3.31/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Program Files/CMake/share/cmake-3.31/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:13 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+      Compiler:  
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      MSBuild version 17.14.10+8b8e13593 for .NET Framework
+      Build started 07/09/2025 23:08:41.
+      
+      Project "C:\\Users\\anees\\Documents\\VST DEV\\Circulate\\build\\CMakeFiles\\3.31.5\\CompilerIdC\\CompilerIdC.vcxproj" on node 1 (default targets).
+      PrepareForBuild:
+        Creating directory "Debug\\".
+        Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+        Creating directory "Debug\\CompilerIdC.tlog\\".
+      InitializeBuildStatus:
+        Creating "Debug\\CompilerIdC.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
+        Touching "Debug\\CompilerIdC.tlog\\unsuccessfulbuild".
+      ClCompile:
+        C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\CL.exe /c /nologo /W0 /WX- /diagnostics:column /Od /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\\\" /Fd"Debug\\vc143.pdb" /external:W0 /Gd /TC /FC /errorReport:queue CMakeCCompilerId.c
+        CMakeCCompilerId.c
+      Link:
+        C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:".\\CompilerIdC.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:".\\CompilerIdC.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:".\\CompilerIdC.lib" /MACHINE:X64 Debug\\CMakeCCompilerId.obj
+        CompilerIdC.vcxproj -> C:\\Users\\anees\\Documents\\VST DEV\\Circulate\\build\\CMakeFiles\\3.31.5\\CompilerIdC\\CompilerIdC.exe
+      PostBuildEvent:
+        for %%i in (cl.exe) do @echo CMAKE_C_COMPILER=%%~$PATH:i
+        :VCEnd
+        CMAKE_C_COMPILER=C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64\\cl.exe
+      FinalizeBuildStatus:
+        Deleting file "Debug\\CompilerIdC.tlog\\unsuccessfulbuild".
+        Touching "Debug\\CompilerIdC.tlog\\CompilerIdC.lastbuildstate".
+      Done Building Project "C:\\Users\\anees\\Documents\\VST DEV\\Circulate\\build\\CMakeFiles\\3.31.5\\CompilerIdC\\CompilerIdC.vcxproj" (default targets).
+      
+      Build succeeded.
+          0 Warning(s)
+          0 Error(s)
+      
+      Time Elapsed 00:00:01.04
+      
+      
+      Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CompilerIdC.exe"
+      
+      Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CompilerIdC.vcxproj"
+      
+      The C compiler identification is MSVC, found in:
+        C:/Users/anees/Documents/VST DEV/Circulate/build/CMakeFiles/3.31.5/CompilerIdC/CompilerIdC.exe
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-3.31/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/Program Files/CMake/share/cmake-3.31/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Program Files/CMake/share/cmake-3.31/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:13 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+      Compiler:  
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      MSBuild version 17.14.10+8b8e13593 for .NET Framework
+      Build started 07/09/2025 23:08:42.
+      
+      Project "C:\\Users\\anees\\Documents\\VST DEV\\Circulate\\build\\CMakeFiles\\3.31.5\\CompilerIdCXX\\CompilerIdCXX.vcxproj" on node 1 (default targets).
+      PrepareForBuild:
+        Creating directory "Debug\\".
+        Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+        Creating directory "Debug\\CompilerIdCXX.tlog\\".
+      InitializeBuildStatus:
+        Creating "Debug\\CompilerIdCXX.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
+        Touching "Debug\\CompilerIdCXX.tlog\\unsuccessfulbuild".
+      ClCompile:
+        C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\CL.exe /c /nologo /W0 /WX- /diagnostics:column /Od /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\\\" /Fd"Debug\\vc143.pdb" /external:W0 /Gd /TP /FC /errorReport:queue CMakeCXXCompilerId.cpp
+        CMakeCXXCompilerId.cpp
+      Link:
+        C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:".\\CompilerIdCXX.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:".\\CompilerIdCXX.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:".\\CompilerIdCXX.lib" /MACHINE:X64 Debug\\CMakeCXXCompilerId.obj
+        CompilerIdCXX.vcxproj -> C:\\Users\\anees\\Documents\\VST DEV\\Circulate\\build\\CMakeFiles\\3.31.5\\CompilerIdCXX\\CompilerIdCXX.exe
+      PostBuildEvent:
+        for %%i in (cl.exe) do @echo CMAKE_CXX_COMPILER=%%~$PATH:i
+        :VCEnd
+        CMAKE_CXX_COMPILER=C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64\\cl.exe
+      FinalizeBuildStatus:
+        Deleting file "Debug\\CompilerIdCXX.tlog\\unsuccessfulbuild".
+        Touching "Debug\\CompilerIdCXX.tlog\\CompilerIdCXX.lastbuildstate".
+      Done Building Project "C:\\Users\\anees\\Documents\\VST DEV\\Circulate\\build\\CMakeFiles\\3.31.5\\CompilerIdCXX\\CompilerIdCXX.vcxproj" (default targets).
+      
+      Build succeeded.
+          0 Warning(s)
+          0 Error(s)
+      
+      Time Elapsed 00:00:00.75
+      
+      
+      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CompilerIdCXX.exe"
+      
+      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CompilerIdCXX.vcxproj"
+      
+      The CXX compiler identification is MSVC, found in:
+        C:/Users/anees/Documents/VST DEV/Circulate/build/CMakeFiles/3.31.5/CompilerIdCXX/CompilerIdCXX.exe
+      
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-3.31/Modules/CMakeDetermineCompilerABI.cmake:74 (try_compile)"
+      - "C:/Program Files/CMake/share/cmake-3.31/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:13 (project)"
+    checks:
+      - "Detecting C compiler ABI info"
+    directories:
+      source: "C:/Users/anees/Documents/VST DEV/Circulate/build/CMakeFiles/CMakeScratch/TryCompile-uu7fsp"
+      binary: "C:/Users/anees/Documents/VST DEV/Circulate/build/CMakeFiles/CMakeScratch/TryCompile-uu7fsp"
+    cmakeVariables:
+      CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS /W3"
+      CMAKE_C_FLAGS_DEBUG: "/MDd /Zi /Ob0 /Od /RTC1"
+      CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
+      CMAKE_OSX_DEPLOYMENT_TARGET: "10.13"
+    buildResult:
+      variable: "CMAKE_C_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/anees/Documents/VST DEV/Circulate/build/CMakeFiles/CMakeScratch/TryCompile-uu7fsp'
+        
+        Run Build Command(s): "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_31b8f.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        MSBuild version 17.14.10+8b8e13593 for .NET Framework
+        Build started 07/09/2025 23:08:44.
+        
+        Project "C:\\Users\\anees\\Documents\\VST DEV\\Circulate\\build\\CMakeFiles\\CMakeScratch\\TryCompile-uu7fsp\\cmTC_31b8f.vcxproj" on node 1 (default targets).
+        PrepareForBuild:
+          Creating directory "cmTC_31b8f.dir\\Debug\\".
+          Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+          Creating directory "C:\\Users\\anees\\Documents\\VST DEV\\Circulate\\build\\CMakeFiles\\CMakeScratch\\TryCompile-uu7fsp\\Debug\\".
+          Creating directory "cmTC_31b8f.dir\\Debug\\cmTC_31b8f.tlog\\".
+        InitializeBuildStatus:
+          Creating "cmTC_31b8f.dir\\Debug\\cmTC_31b8f.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
+          Touching "cmTC_31b8f.dir\\Debug\\cmTC_31b8f.tlog\\unsuccessfulbuild".
+        ClCompile:
+          C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\CL.exe /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_31b8f.dir\\Debug\\\\" /Fd"cmTC_31b8f.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TC /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-3.31\\Modules\\CMakeCCompilerABI.c"
+          Microsoft (R) C/C++ Optimizing Compiler Version 19.44.35209 for x64
+          Copyright (C) Microsoft Corporation.  All rights reserved.
+          cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_31b8f.dir\\Debug\\\\" /Fd"cmTC_31b8f.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TC /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-3.31\\Modules\\CMakeCCompilerABI.c"
+          CMakeCCompilerABI.c
+        Link:
+          C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"C:\\Users\\anees\\Documents\\VST DEV\\Circulate\\build\\CMakeFiles\\CMakeScratch\\TryCompile-uu7fsp\\Debug\\cmTC_31b8f.exe" /INCREMENTAL /ILK:"cmTC_31b8f.dir\\Debug\\cmTC_31b8f.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/anees/Documents/VST DEV/Circulate/build/CMakeFiles/CMakeScratch/TryCompile-uu7fsp/Debug/cmTC_31b8f.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/Users/anees/Documents/VST DEV/Circulate/build/CMakeFiles/CMakeScratch/TryCompile-uu7fsp/Debug/cmTC_31b8f.lib" /MACHINE:X64  /machine:x64 cmTC_31b8f.dir\\Debug\\CMakeCCompilerABI.obj
+          cmTC_31b8f.vcxproj -> C:\\Users\\anees\\Documents\\VST DEV\\Circulate\\build\\CMakeFiles\\CMakeScratch\\TryCompile-uu7fsp\\Debug\\cmTC_31b8f.exe
+        FinalizeBuildStatus:
+          Deleting file "cmTC_31b8f.dir\\Debug\\cmTC_31b8f.tlog\\unsuccessfulbuild".
+          Touching "cmTC_31b8f.dir\\Debug\\cmTC_31b8f.tlog\\cmTC_31b8f.lastbuildstate".
+        Done Building Project "C:\\Users\\anees\\Documents\\VST DEV\\Circulate\\build\\CMakeFiles\\CMakeScratch\\TryCompile-uu7fsp\\cmTC_31b8f.vcxproj" (default targets).
+        
+        Build succeeded.
+            0 Warning(s)
+            0 Error(s)
+        
+        Time Elapsed 00:00:00.62
+        
+      exitCode: 0
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-3.31/Modules/CMakeDetermineCompilerABI.cmake:218 (message)"
+      - "C:/Program Files/CMake/share/cmake-3.31/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:13 (project)"
+    message: |
+      Parsed C implicit link information:
+        link line regex: [^( *|.*[/\\])(ld[0-9]*(\\.[a-z]+)?|link\\.exe|lld-link(\\.exe)?|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
+        linker tool regex: [^[ 	]*(->|")?[ 	]*(([^"]*[/\\])?(ld[0-9]*(\\.[a-z]+)?|link\\.exe|lld-link(\\.exe)?))("|,| |$)]
+        linker tool for 'C': C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.44.35207/bin/HostX64/x64/link.exe
+        implicit libs: []
+        implicit objs: []
+        implicit dirs: []
+        implicit fwks: []
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-3.31/Modules/Internal/CMakeDetermineLinkerId.cmake:40 (message)"
+      - "C:/Program Files/CMake/share/cmake-3.31/Modules/CMakeDetermineCompilerABI.cmake:255 (cmake_determine_linker_id)"
+      - "C:/Program Files/CMake/share/cmake-3.31/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:13 (project)"
+    message: |
+      Running the C compiler's linker: "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.44.35207/bin/HostX64/x64/link.exe" "-v"
+      Microsoft (R) Incremental Linker Version 14.44.35209.0
+      Copyright (C) Microsoft Corporation.  All rights reserved.
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-3.31/Modules/CMakeDetermineCompilerABI.cmake:74 (try_compile)"
+      - "C:/Program Files/CMake/share/cmake-3.31/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:13 (project)"
+    checks:
+      - "Detecting CXX compiler ABI info"
+    directories:
+      source: "C:/Users/anees/Documents/VST DEV/Circulate/build/CMakeFiles/CMakeScratch/TryCompile-wurmkm"
+      binary: "C:/Users/anees/Documents/VST DEV/Circulate/build/CMakeFiles/CMakeScratch/TryCompile-wurmkm"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: "/DWIN32 /D_WINDOWS /W3 /GR /EHsc"
+      CMAKE_CXX_FLAGS_DEBUG: "/MDd /Zi /Ob0 /Od /RTC1"
+      CMAKE_CXX_SCAN_FOR_MODULES: "OFF"
+      CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
+      CMAKE_OSX_DEPLOYMENT_TARGET: "10.13"
+    buildResult:
+      variable: "CMAKE_CXX_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/anees/Documents/VST DEV/Circulate/build/CMakeFiles/CMakeScratch/TryCompile-wurmkm'
+        
+        Run Build Command(s): "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_beadd.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        MSBuild version 17.14.10+8b8e13593 for .NET Framework
+        Build started 07/09/2025 23:08:45.
+        
+        Project "C:\\Users\\anees\\Documents\\VST DEV\\Circulate\\build\\CMakeFiles\\CMakeScratch\\TryCompile-wurmkm\\cmTC_beadd.vcxproj" on node 1 (default targets).
+        PrepareForBuild:
+          Creating directory "cmTC_beadd.dir\\Debug\\".
+          Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+          Creating directory "C:\\Users\\anees\\Documents\\VST DEV\\Circulate\\build\\CMakeFiles\\CMakeScratch\\TryCompile-wurmkm\\Debug\\".
+          Creating directory "cmTC_beadd.dir\\Debug\\cmTC_beadd.tlog\\".
+        InitializeBuildStatus:
+          Creating "cmTC_beadd.dir\\Debug\\cmTC_beadd.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
+          Touching "cmTC_beadd.dir\\Debug\\cmTC_beadd.tlog\\unsuccessfulbuild".
+        ClCompile:
+          C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\CL.exe /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_beadd.dir\\Debug\\\\" /Fd"cmTC_beadd.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TP /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-3.31\\Modules\\CMakeCXXCompilerABI.cpp"
+          Microsoft (R) C/C++ Optimizing Compiler Version 19.44.35209 for x64
+          Copyright (C) Microsoft Corporation.  All rights reserved.
+          cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_beadd.dir\\Debug\\\\" /Fd"cmTC_beadd.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TP /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-3.31\\Modules\\CMakeCXXCompilerABI.cpp"
+          CMakeCXXCompilerABI.cpp
+        Link:
+          C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"C:\\Users\\anees\\Documents\\VST DEV\\Circulate\\build\\CMakeFiles\\CMakeScratch\\TryCompile-wurmkm\\Debug\\cmTC_beadd.exe" /INCREMENTAL /ILK:"cmTC_beadd.dir\\Debug\\cmTC_beadd.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/anees/Documents/VST DEV/Circulate/build/CMakeFiles/CMakeScratch/TryCompile-wurmkm/Debug/cmTC_beadd.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/Users/anees/Documents/VST DEV/Circulate/build/CMakeFiles/CMakeScratch/TryCompile-wurmkm/Debug/cmTC_beadd.lib" /MACHINE:X64  /machine:x64 cmTC_beadd.dir\\Debug\\CMakeCXXCompilerABI.obj
+          cmTC_beadd.vcxproj -> C:\\Users\\anees\\Documents\\VST DEV\\Circulate\\build\\CMakeFiles\\CMakeScratch\\TryCompile-wurmkm\\Debug\\cmTC_beadd.exe
+        FinalizeBuildStatus:
+          Deleting file "cmTC_beadd.dir\\Debug\\cmTC_beadd.tlog\\unsuccessfulbuild".
+          Touching "cmTC_beadd.dir\\Debug\\cmTC_beadd.tlog\\cmTC_beadd.lastbuildstate".
+        Done Building Project "C:\\Users\\anees\\Documents\\VST DEV\\Circulate\\build\\CMakeFiles\\CMakeScratch\\TryCompile-wurmkm\\cmTC_beadd.vcxproj" (default targets).
+        
+        Build succeeded.
+            0 Warning(s)
+            0 Error(s)
+        
+        Time Elapsed 00:00:00.61
+        
+      exitCode: 0
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-3.31/Modules/CMakeDetermineCompilerABI.cmake:218 (message)"
+      - "C:/Program Files/CMake/share/cmake-3.31/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:13 (project)"
+    message: |
+      Parsed CXX implicit link information:
+        link line regex: [^( *|.*[/\\])(ld[0-9]*(\\.[a-z]+)?|link\\.exe|lld-link(\\.exe)?|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
+        linker tool regex: [^[ 	]*(->|")?[ 	]*(([^"]*[/\\])?(ld[0-9]*(\\.[a-z]+)?|link\\.exe|lld-link(\\.exe)?))("|,| |$)]
+        linker tool for 'CXX': C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.44.35207/bin/HostX64/x64/link.exe
+        implicit libs: []
+        implicit objs: []
+        implicit dirs: []
+        implicit fwks: []
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-3.31/Modules/Internal/CMakeDetermineLinkerId.cmake:40 (message)"
+      - "C:/Program Files/CMake/share/cmake-3.31/Modules/CMakeDetermineCompilerABI.cmake:255 (cmake_determine_linker_id)"
+      - "C:/Program Files/CMake/share/cmake-3.31/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:13 (project)"
+    message: |
+      Running the CXX compiler's linker: "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.44.35207/bin/HostX64/x64/link.exe" "-v"
+      Microsoft (R) Incremental Linker Version 14.44.35209.0
+      Copyright (C) Microsoft Corporation.  All rights reserved.
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-3.31/Modules/Internal/CheckSourceCompiles.cmake:108 (try_compile)"
+      - "C:/Program Files/CMake/share/cmake-3.31/Modules/CheckSourceCompiles.cmake:89 (cmake_check_source_compiles)"
+      - "C:/Dev/VST_SDK/vst3sdk/pluginterfaces/CMakeLists.txt:52 (check_source_compiles)"
+    checks:
+      - "Performing Test SMTG_USE_STDATOMIC_H"
+    directories:
+      source: "C:/Users/anees/Documents/VST DEV/Circulate/build/CMakeFiles/CMakeScratch/TryCompile-6rzfkn"
+      binary: "C:/Users/anees/Documents/VST DEV/Circulate/build/CMakeFiles/CMakeScratch/TryCompile-6rzfkn"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: "/DWIN32 /D_WINDOWS /W3 /GR /EHsc"
+      CMAKE_CXX_FLAGS_DEBUG: "/MDd /Zi /Ob0 /Od /RTC1"
+      CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
+      CMAKE_MODULE_PATH: "C:/Dev/VST_SDK/vst3sdk/cmake/modules"
+      CMAKE_OSX_DEPLOYMENT_TARGET: "10.13"
+    buildResult:
+      variable: "SMTG_USE_STDATOMIC_H"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/anees/Documents/VST DEV/Circulate/build/CMakeFiles/CMakeScratch/TryCompile-6rzfkn'
+        
+        Run Build Command(s): "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_d1387.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        MSBuild version 17.14.10+8b8e13593 for .NET Framework
+        Build started 07/09/2025 23:08:47.
+        
+        Project "C:\\Users\\anees\\Documents\\VST DEV\\Circulate\\build\\CMakeFiles\\CMakeScratch\\TryCompile-6rzfkn\\cmTC_d1387.vcxproj" on node 1 (default targets).
+        PrepareForBuild:
+          Creating directory "cmTC_d1387.dir\\Debug\\".
+          Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+          Creating directory "C:\\Users\\anees\\Documents\\VST DEV\\Circulate\\build\\CMakeFiles\\CMakeScratch\\TryCompile-6rzfkn\\Debug\\".
+          Creating directory "cmTC_d1387.dir\\Debug\\cmTC_d1387.tlog\\".
+        InitializeBuildStatus:
+          Creating "cmTC_d1387.dir\\Debug\\cmTC_d1387.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
+          Touching "cmTC_d1387.dir\\Debug\\cmTC_d1387.tlog\\unsuccessfulbuild".
+        ClCompile:
+          C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\CL.exe /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D SMTG_USE_STDATOMIC_H /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_d1387.dir\\Debug\\\\" /Fd"cmTC_d1387.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TP /errorReport:queue "C:\\Users\\anees\\Documents\\VST DEV\\Circulate\\build\\CMakeFiles\\CMakeScratch\\TryCompile-6rzfkn\\src.cxx"
+          Microsoft (R) C/C++ Optimizing Compiler Version 19.44.35209 for x64
+          Copyright (C) Microsoft Corporation.  All rights reserved.
+          cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D SMTG_USE_STDATOMIC_H /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_d1387.dir\\Debug\\\\" /Fd"cmTC_d1387.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TP /errorReport:queue "C:\\Users\\anees\\Documents\\VST DEV\\Circulate\\build\\CMakeFiles\\CMakeScratch\\TryCompile-6rzfkn\\src.cxx"
+          src.cxx
+        C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.44.35207\\include\\__msvc_cxx_stdatomic.hpp(24): warning STL4038: The contents of <stdatomic.h> are available only with C++23 or later. [C:\\Users\\anees\\Documents\\VST DEV\\Circulate\\build\\CMakeFiles\\CMakeScratch\\TryCompile-6rzfkn\\cmTC_d1387.vcxproj]
+        C:\\Users\\anees\\Documents\\VST DEV\\Circulate\\build\\CMakeFiles\\CMakeScratch\\TryCompile-6rzfkn\\src.cxx(3,2): error C2065: 'atomic_int_least32_t': undeclared identifier [C:\\Users\\anees\\Documents\\VST DEV\\Circulate\\build\\CMakeFiles\\CMakeScratch\\TryCompile-6rzfkn\\cmTC_d1387.vcxproj]
+        C:\\Users\\anees\\Documents\\VST DEV\\Circulate\\build\\CMakeFiles\\CMakeScratch\\TryCompile-6rzfkn\\src.cxx(3,23): error C2146: syntax error: missing ';' before identifier 'value' [C:\\Users\\anees\\Documents\\VST DEV\\Circulate\\build\\CMakeFiles\\CMakeScratch\\TryCompile-6rzfkn\\cmTC_d1387.vcxproj]
+        C:\\Users\\anees\\Documents\\VST DEV\\Circulate\\build\\CMakeFiles\\CMakeScratch\\TryCompile-6rzfkn\\src.cxx(3,23): error C2065: 'value': undeclared identifier [C:\\Users\\anees\\Documents\\VST DEV\\Circulate\\build\\CMakeFiles\\CMakeScratch\\TryCompile-6rzfkn\\cmTC_d1387.vcxproj]
+        C:\\Users\\anees\\Documents\\VST DEV\\Circulate\\build\\CMakeFiles\\CMakeScratch\\TryCompile-6rzfkn\\src.cxx(4,21): error C2065: 'value': undeclared identifier [C:\\Users\\anees\\Documents\\VST DEV\\Circulate\\build\\CMakeFiles\\CMakeScratch\\TryCompile-6rzfkn\\cmTC_d1387.vcxproj]
+        C:\\Users\\anees\\Documents\\VST DEV\\Circulate\\build\\CMakeFiles\\CMakeScratch\\TryCompile-6rzfkn\\src.cxx(4,2): error C3861: 'atomic_fetch_add': identifier not found [C:\\Users\\anees\\Documents\\VST DEV\\Circulate\\build\\CMakeFiles\\CMakeScratch\\TryCompile-6rzfkn\\cmTC_d1387.vcxproj]
+        Done Building Project "C:\\Users\\anees\\Documents\\VST DEV\\Circulate\\build\\CMakeFiles\\CMakeScratch\\TryCompile-6rzfkn\\cmTC_d1387.vcxproj" (default targets) -- FAILED.
+        
+        Build FAILED.
+        
+        "C:\\Users\\anees\\Documents\\VST DEV\\Circulate\\build\\CMakeFiles\\CMakeScratch\\TryCompile-6rzfkn\\cmTC_d1387.vcxproj" (default target) (1) ->
+        (ClCompile target) -> 
+          C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.44.35207\\include\\__msvc_cxx_stdatomic.hpp(24): warning STL4038: The contents of <stdatomic.h> are available only with C++23 or later. [C:\\Users\\anees\\Documents\\VST DEV\\Circulate\\build\\CMakeFiles\\CMakeScratch\\TryCompile-6rzfkn\\cmTC_d1387.vcxproj]
+        
+        
+        "C:\\Users\\anees\\Documents\\VST DEV\\Circulate\\build\\CMakeFiles\\CMakeScratch\\TryCompile-6rzfkn\\cmTC_d1387.vcxproj" (default target) (1) ->
+        (ClCompile target) -> 
+          C:\\Users\\anees\\Documents\\VST DEV\\Circulate\\build\\CMakeFiles\\CMakeScratch\\TryCompile-6rzfkn\\src.cxx(3,2): error C2065: 'atomic_int_least32_t': undeclared identifier [C:\\Users\\anees\\Documents\\VST DEV\\Circulate\\build\\CMakeFiles\\CMakeScratch\\TryCompile-6rzfkn\\cmTC_d1387.vcxproj]
+          C:\\Users\\anees\\Documents\\VST DEV\\Circulate\\build\\CMakeFiles\\CMakeScratch\\TryCompile-6rzfkn\\src.cxx(3,23): error C2146: syntax error: missing ';' before identifier 'value' [C:\\Users\\anees\\Documents\\VST DEV\\Circulate\\build\\CMakeFiles\\CMakeScratch\\TryCompile-6rzfkn\\cmTC_d1387.vcxproj]
+          C:\\Users\\anees\\Documents\\VST DEV\\Circulate\\build\\CMakeFiles\\CMakeScratch\\TryCompile-6rzfkn\\src.cxx(3,23): error C2065: 'value': undeclared identifier [C:\\Users\\anees\\Documents\\VST DEV\\Circulate\\build\\CMakeFiles\\CMakeScratch\\TryCompile-6rzfkn\\cmTC_d1387.vcxproj]
+          C:\\Users\\anees\\Documents\\VST DEV\\Circulate\\build\\CMakeFiles\\CMakeScratch\\TryCompile-6rzfkn\\src.cxx(4,21): error C2065: 'value': undeclared identifier [C:\\Users\\anees\\Documents\\VST DEV\\Circulate\\build\\CMakeFiles\\CMakeScratch\\TryCompile-6rzfkn\\cmTC_d1387.vcxproj]
+          C:\\Users\\anees\\Documents\\VST DEV\\Circulate\\build\\CMakeFiles\\CMakeScratch\\TryCompile-6rzfkn\\src.cxx(4,2): error C3861: 'atomic_fetch_add': identifier not found [C:\\Users\\anees\\Documents\\VST DEV\\Circulate\\build\\CMakeFiles\\CMakeScratch\\TryCompile-6rzfkn\\cmTC_d1387.vcxproj]
+        
+            1 Warning(s)
+            5 Error(s)
+        
+        Time Elapsed 00:00:00.43
+        
+      exitCode: 1
+...

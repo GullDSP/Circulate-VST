@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Dev\VST_SDK\vst3sdk\public.sdk\source\common\pluginview.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Dev\VST_SDK\vst3sdk\public.sdk\source\main\pluginfactory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Dev\VST_SDK\vst3sdk\public.sdk\source\main\moduleinit.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Dev\VST_SDK\vst3sdk\public.sdk\source\vst\utility\dataexchange.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Dev\VST_SDK\vst3sdk\public.sdk\source\vst\utility\stringconvert.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Dev\VST_SDK\vst3sdk\public.sdk\source\vst\utility\systemtime.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Dev\VST_SDK\vst3sdk\public.sdk\source\vst\utility\testing.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Dev\VST_SDK\vst3sdk\public.sdk\source\vst\utility\vst2persistence.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Dev\VST_SDK\vst3sdk\public.sdk\source\vst\vstaudioeffect.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Dev\VST_SDK\vst3sdk\public.sdk\source\vst\vstbus.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Dev\VST_SDK\vst3sdk\public.sdk\source\vst\vstcomponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Dev\VST_SDK\vst3sdk\public.sdk\source\vst\vstcomponentbase.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Dev\VST_SDK\vst3sdk\public.sdk\source\vst\vsteditcontroller.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Dev\VST_SDK\vst3sdk\public.sdk\source\vst\vstinitiids.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Dev\VST_SDK\vst3sdk\public.sdk\source\vst\vstnoteexpressiontypes.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Dev\VST_SDK\vst3sdk\public.sdk\source\vst\vstparameters.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Dev\VST_SDK\vst3sdk\public.sdk\source\vst\vstrepresentation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C:\Dev\VST_SDK\vst3sdk\public.sdk\source\common\pluginview.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Dev\VST_SDK\vst3sdk\public.sdk\source\main\pluginfactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Dev\VST_SDK\vst3sdk\public.sdk\source\main\pluginfactory_constexpr.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Dev\VST_SDK\vst3sdk\public.sdk\source\main\moduleinit.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Dev\VST_SDK\vst3sdk\public.sdk\source\vst\utility\alignedalloc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Dev\VST_SDK\vst3sdk\public.sdk\source\vst\utility\audiobuffers.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Dev\VST_SDK\vst3sdk\public.sdk\source\vst\utility\dataexchange.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Dev\VST_SDK\vst3sdk\public.sdk\source\vst\utility\memoryibstream.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Dev\VST_SDK\vst3sdk\public.sdk\source\vst\utility\processcontextrequirements.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Dev\VST_SDK\vst3sdk\public.sdk\source\vst\utility\processdataslicer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Dev\VST_SDK\vst3sdk\public.sdk\source\vst\utility\ringbuffer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Dev\VST_SDK\vst3sdk\public.sdk\source\vst\utility\rttransfer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Dev\VST_SDK\vst3sdk\public.sdk\source\vst\utility\sampleaccurate.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Dev\VST_SDK\vst3sdk\public.sdk\source\vst\utility\stringconvert.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Dev\VST_SDK\vst3sdk\public.sdk\source\vst\utility\systemtime.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Dev\VST_SDK\vst3sdk\public.sdk\source\vst\utility\testing.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Dev\VST_SDK\vst3sdk\public.sdk\source\vst\utility\vst2persistence.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Dev\VST_SDK\vst3sdk\public.sdk\source\vst\vstaudioeffect.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Dev\VST_SDK\vst3sdk\public.sdk\source\vst\vstbus.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Dev\VST_SDK\vst3sdk\public.sdk\source\vst\vstbypassprocessor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Dev\VST_SDK\vst3sdk\public.sdk\source\vst\vstcomponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Dev\VST_SDK\vst3sdk\public.sdk\source\vst\vstcomponentbase.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Dev\VST_SDK\vst3sdk\public.sdk\source\vst\vsteditcontroller.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Dev\VST_SDK\vst3sdk\public.sdk\source\vst\vsteventshelper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Dev\VST_SDK\vst3sdk\public.sdk\source\vst\vsthelpers.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Dev\VST_SDK\vst3sdk\public.sdk\source\vst\vstnoteexpressiontypes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Dev\VST_SDK\vst3sdk\public.sdk\source\vst\vstparameters.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Dev\VST_SDK\vst3sdk\public.sdk\source\vst\vstrepresentation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Dev\VST_SDK\vst3sdk\public.sdk\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{2B7D8497-4C88-36E2-A264-0C66A98E351E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{8806A0DC-3EB2-3E86-8D99-DF8AE9802101}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

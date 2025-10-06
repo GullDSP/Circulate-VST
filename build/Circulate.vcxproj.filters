@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\anees\Documents\VST DEV\Circulate\source\processor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\anees\Documents\VST DEV\Circulate\source\controller.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\anees\Documents\VST DEV\Circulate\source\entry.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Dev\VST_SDK\vst3sdk\public.sdk\source\main\dllmain.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C:\Users\anees\Documents\VST DEV\Circulate\source\version.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\anees\Documents\VST DEV\Circulate\source\cids.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\anees\Documents\VST DEV\Circulate\source\processor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\anees\Documents\VST DEV\Circulate\source\controller.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\CirculateEffect.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\CirculateHelpers.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\AllpassFilter.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\CirculateParameters.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\LogRangeParameter.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Limiter.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\anees\Documents\VST DEV\Circulate\resource\editor.uidesc">
+      <Filter>Contents\Resources</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\anees\Documents\VST DEV\Circulate\resource\8324F606598653AA96620D195BF7DA24_snapshot.png">
+      <Filter>Contents\Resources\Snapshots</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\anees\Documents\VST DEV\Circulate\resource\8324F606598653AA96620D195BF7DA24_snapshot_2.0x.png">
+      <Filter>Contents\Resources\Snapshots</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\anees\Documents\VST DEV\Circulate\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="C:\Users\anees\Documents\VST DEV\Circulate\resource\win32resource.rc">
+      <Filter>Source Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Contents">
+      <UniqueIdentifier>{7AE4C297-79E8-36E5-A6CE-D7F266D6E8B3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Resources">
+      <UniqueIdentifier>{B53F4EF4-29BC-3962-8C61-24B2B515A521}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Resources\Snapshots">
+      <UniqueIdentifier>{2914C0F3-00F9-3FF3-87DF-78E1B151D454}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{2B7D8497-4C88-36E2-A264-0C66A98E351E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{8806A0DC-3EB2-3E86-8D99-DF8AE9802101}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,7 @@
+# CMake generation dependency list for this directory.
+C:/Dev/VST_SDK/vst3sdk/vstgui4/vstgui/uidescription/CMakeLists.txt
+C:/Program Files/CMake/share/cmake-3.31/Modules/FindEXPAT.cmake
+C:/Program Files/CMake/share/cmake-3.31/Modules/FindPackageHandleStandardArgs.cmake
+C:/Program Files/CMake/share/cmake-3.31/Modules/FindPackageMessage.cmake
+C:/Program Files/CMake/share/cmake-3.31/Modules/FindPkgConfig.cmake
+C:/Program Files/CMake/share/cmake-3.31/Modules/SelectLibraryConfigurations.cmake

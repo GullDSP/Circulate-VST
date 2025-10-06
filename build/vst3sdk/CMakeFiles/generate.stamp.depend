@@ -1,0 +1,30 @@
+# CMake generation dependency list for this directory.
+C:/Dev/VST_SDK/vst3sdk/CMakeLists.txt
+C:/Dev/VST_SDK/vst3sdk/cmake/modules/SMTG_AAXSupport.cmake
+C:/Dev/VST_SDK/vst3sdk/cmake/modules/SMTG_AddCommonOptions.cmake
+C:/Dev/VST_SDK/vst3sdk/cmake/modules/SMTG_AddSMTGLibrary.cmake
+C:/Dev/VST_SDK/vst3sdk/cmake/modules/SMTG_AddVST3Library.cmake
+C:/Dev/VST_SDK/vst3sdk/cmake/modules/SMTG_AddVST3Options.cmake
+C:/Dev/VST_SDK/vst3sdk/cmake/modules/SMTG_Bundle.cmake
+C:/Dev/VST_SDK/vst3sdk/cmake/modules/SMTG_CodeSign.cmake
+C:/Dev/VST_SDK/vst3sdk/cmake/modules/SMTG_ConfigureCmakeGenerator.cmake
+C:/Dev/VST_SDK/vst3sdk/cmake/modules/SMTG_CoreAudioSupport.cmake
+C:/Dev/VST_SDK/vst3sdk/cmake/modules/SMTG_CustomModuleTarget.cmake
+C:/Dev/VST_SDK/vst3sdk/cmake/modules/SMTG_DetectPlatform.cmake
+C:/Dev/VST_SDK/vst3sdk/cmake/modules/SMTG_ExportedSymbols.cmake
+C:/Dev/VST_SDK/vst3sdk/cmake/modules/SMTG_FindJack.cmake
+C:/Dev/VST_SDK/vst3sdk/cmake/modules/SMTG_Global.cmake
+C:/Dev/VST_SDK/vst3sdk/cmake/modules/SMTG_PlatformIOS.cmake
+C:/Dev/VST_SDK/vst3sdk/cmake/modules/SMTG_PlatformToolset.cmake
+C:/Dev/VST_SDK/vst3sdk/cmake/modules/SMTG_Platform_Windows.cmake
+C:/Dev/VST_SDK/vst3sdk/cmake/modules/SMTG_PrefixHeader.cmake
+C:/Dev/VST_SDK/vst3sdk/cmake/modules/SMTG_SetDebugExecutable.cmake
+C:/Dev/VST_SDK/vst3sdk/cmake/modules/SMTG_SetupVST3LibraryDefaultPath.cmake
+C:/Dev/VST_SDK/vst3sdk/cmake/modules/SMTG_UniversalBinary.cmake
+C:/Dev/VST_SDK/vst3sdk/cmake/modules/SMTG_VST3_SDK.cmake
+C:/Dev/VST_SDK/vst3sdk/cmake/modules/SMTG_VstGuiSupport.cmake
+C:/Program Files/CMake/share/cmake-3.31/Modules/CMakeParseArguments.cmake
+C:/Program Files/CMake/share/cmake-3.31/Modules/CMakePrintHelpers.cmake
+C:/Program Files/CMake/share/cmake-3.31/Modules/CheckLanguage.cmake
+C:/Program Files/CMake/share/cmake-3.31/Modules/FindPackageHandleStandardArgs.cmake
+C:/Program Files/CMake/share/cmake-3.31/Modules/FindPackageMessage.cmake
