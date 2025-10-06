@@ -281,7 +281,7 @@ namespace CIRCULATE_PARAMS {
 			Center.setSmoothTime(20, sampleRate);
 			Focus.setSmoothTime(20, sampleRate);
 			NoteOffset.setSmoothTime(20, sampleRate);
-			Feedback.setSmoothTime(20, sampleRate);
+			Feedback.setSmoothTime(10, sampleRate);
 
 
 			// Disable smoothing on discrete parameters

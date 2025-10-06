@@ -96,10 +96,14 @@ public:
 
 			// Scale feedback parameter, 
 			float feedback = pParams->Feedback.getSampleAccurateValue(s);
-			feedback = (feedback - 0.5) * 1.98f;
-			if (abs(feedback) < 0.01) {
-				feedback = 0;
+
+			// Snap feedback to allow easy switching off
+			if (abs(feedback - 0.5) < 0.1) {
+				feedback = 0.5;
 			}
+
+			feedback = (feedback - 0.5) * 1.98f;
+
 			if (mNumActiveStages == 0) {
 				feedback = 0;
 			}

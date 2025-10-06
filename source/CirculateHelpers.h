@@ -41,7 +41,14 @@ namespace HELPERS {
 	class ValueSmoother {
 		public:
 			float getSmoothedValue(float target) {
-				lastValue += (target - lastValue) * smoothFactor;
+				float difference = target - lastValue;
+				// Snap to target if the difference is very small
+				if (std::abs(difference) < 1e-9f) {
+					lastValue = target;
+				}
+				else {
+					lastValue += difference * smoothFactor;
+				}
 				return lastValue;
 			}
 			void setSmoothTime(float time_ms, int sample_rate) {
