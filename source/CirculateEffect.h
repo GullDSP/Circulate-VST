@@ -29,7 +29,9 @@ public:
 		const double smoothTimeMs = 5;
 		// Set coefficient smooth time
 		pState->setSmoothTime(smoothTimeMs, Setup.sampleRate);
-		
+
+		// This independent smoother smooths the result of the 
+		// note control after converting to Hz (not the note number)
 		NoteControlSmoother.setSmoothTime(25, Setup.sampleRate);
 
 		// Calculate max Hz for center frequency
