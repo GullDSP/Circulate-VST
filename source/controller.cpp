@@ -50,18 +50,18 @@ tresult PLUGIN_API CirculateController::setComponentState (IBStream* state)
 
 	IBStreamer streamer(state, kLittleEndian);
 
-	float depth, center, note, focus, type, offset, bypass, feed;
+	double depth, center, note, focus, type, offset, bypass, feed;
 
 	// Read values in the SAME ORDER the processor wrote them
-	if (streamer.readFloat(depth) == false) return kResultFalse;
-	if (streamer.readFloat(center) == false) return kResultFalse;
-	if (streamer.readFloat(note) == false) return kResultFalse;
-	if (streamer.readFloat(focus) == false) return kResultFalse;
-	if (streamer.readFloat(type) == false) return kResultFalse;
-	if (streamer.readFloat(offset) == false) return kResultFalse;
-	if (streamer.readFloat(bypass) == false) return kResultFalse;
-	if (streamer.readFloat(feed) == false) return kResultFalse;
-
+	if (streamer.readDouble(depth) == false) return kResultFalse;
+	if (streamer.readDouble(center) == false) return kResultFalse;
+	if (streamer.readDouble(note) == false) return kResultFalse;
+	if (streamer.readDouble(focus) == false) return kResultFalse;
+	if (streamer.readDouble(type) == false) return kResultFalse;
+	if (streamer.readDouble(offset) == false) return kResultFalse;
+	if (streamer.readDouble(bypass) == false) return kResultFalse;
+	if (streamer.readDouble(feed) == false) return kResultFalse;
+	
 	// Update the controller's parameter objects.
 	setParamNormalized(CIRCULATE_PARAMS::kDepth, depth);
 	setParamNormalized(CIRCULATE_PARAMS::kCenter, center);

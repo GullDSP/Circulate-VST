@@ -83,7 +83,7 @@ void CirculateProcessor::getParamChangesThisBlock(Steinberg::Vst::IParamValueQue
 		return;
 	}
 	CIRCULATE_PARAMS::ParamUnit* Param = Params->getParameter(paramID);
-	float* ParamValues = nullptr;
+	double* ParamValues = nullptr;
 	if (Param) {
 		 ParamValues = Param->BlockValues.data();
 	}
@@ -290,17 +290,17 @@ tresult PLUGIN_API CirculateProcessor::setState (IBStream* state)
 	IBStreamer streamer (state, kLittleEndian);
 	
 
-	float depth, center, note, focus, type, offset, bypass, feed;
+	double depth, center, note, focus, type, offset, bypass, feed;
 
 	// Same order they were written in getState
-	if (streamer.readFloat(depth) == false) return kResultFalse;
-	if (streamer.readFloat(center) == false) return kResultFalse;
-	if (streamer.readFloat(note) == false) return kResultFalse;
-	if (streamer.readFloat(focus) == false) return kResultFalse;
-	if (streamer.readFloat(type) == false) return kResultFalse;
-	if (streamer.readFloat(offset) == false) return kResultFalse;
-	if (streamer.readFloat(bypass) == false) return kResultFalse;
-	if (streamer.readFloat(feed) == false) return kResultFalse;
+	if (streamer.readDouble(depth) == false) return kResultFalse;
+	if (streamer.readDouble(center) == false) return kResultFalse;
+	if (streamer.readDouble(note) == false) return kResultFalse;
+	if (streamer.readDouble(focus) == false) return kResultFalse;
+	if (streamer.readDouble(type) == false) return kResultFalse;
+	if (streamer.readDouble(offset) == false) return kResultFalse;
+	if (streamer.readDouble(bypass) == false) return kResultFalse;
+	if (streamer.readDouble(feed) == false) return kResultFalse;
 
 	// Fill sample accurate parameter buffers with loaded value
 	Params->Depth.fillWith(depth);
@@ -310,6 +310,7 @@ tresult PLUGIN_API CirculateProcessor::setState (IBStream* state)
 	Params->CenterType.fillWith(type);
 	Params->NoteOffset.fillWith(offset);
 	Params->Feedback.fillWith(feed);
+	
 
 	if (bypass > 0.5) {
 		isBypassed = true;
@@ -337,15 +338,15 @@ tresult PLUGIN_API CirculateProcessor::getState (IBStream* state)
 	}
 	
 	IBStreamer streamer (state, kLittleEndian);
-
-	streamer.writeFloat(Params->Depth.getLastValue());
-	streamer.writeFloat(Params->Center.getLastValue());
-	streamer.writeFloat(Params->Note.getLastValue());
-	streamer.writeFloat(Params->Focus.getLastValue());
-	streamer.writeFloat(Params->CenterType.getLastValue());
-	streamer.writeFloat(Params->NoteOffset.getLastValue());
-	streamer.writeFloat(isBypassed);
-	streamer.writeFloat(Params->Feedback.getLastValue());
+	
+	streamer.writeDouble(Params->Depth.getLastValue());
+	streamer.writeDouble(Params->Center.getLastValue());
+	streamer.writeDouble(Params->Note.getLastValue());
+	streamer.writeDouble(Params->Focus.getLastValue());
+	streamer.writeDouble(Params->CenterType.getLastValue());
+	streamer.writeDouble(Params->NoteOffset.getLastValue());
+	streamer.writeDouble(isBypassed);
+	streamer.writeDouble(Params->Feedback.getLastValue());
 
 	return kResultOk;
 }

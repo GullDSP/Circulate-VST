@@ -95,7 +95,7 @@ public:
 			AllpassFilter::calculateCoefficients(mCenterHz, mFocus, Setup.sampleRate, FilterState);
 
 			// Scale feedback parameter, 
-			float feedback = pParams->Feedback.getSampleAccurateValue(s);
+			double feedback = pParams->Feedback.getSampleAccurateValue(s);
 
 			// Snap feedback to allow easy switching off
 			if (abs(feedback - 0.5) < 0.1) {
@@ -144,14 +144,14 @@ private:
 	AllpassFilter::AllpassInfo* pState = nullptr;
 	HELPERS::SetupInfo Setup;
 
-	float mCenterHz = 0;
-	float mFocus	= 0;
-	float mNoteNumHz		= 0;
-	float mNoteOffsetHz		= 0;
+	double mCenterHz = 0;
+	double mFocus	= 0;
+	double mNoteNumHz		= 0;
+	double mNoteOffsetHz		= 0;
 	int	mNumActiveStages	= 32;
 
 	bool mUseHzControl	 = true;
-	float maxAllowedFreq = 0;
+	double maxAllowedFreq = 0;
 	float currentSample = 0;
 
 	HELPERS::ValueSmoother NoteControlSmoother;
@@ -162,8 +162,8 @@ private:
 	/// </summary>
 	/// <param name="s"> sample index</param>
 	/// <returns></returns>
-	float updateFrequency(int s) {
-		float freqHz = pParams->Center.getSampleAccurateValue(s);
+	double updateFrequency(int s) {
+		double freqHz = pParams->Center.getSampleAccurateValue(s);
 		if (freqHz < 0.0) {
 			freqHz = 0.0;
 		};

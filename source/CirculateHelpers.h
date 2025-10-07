@@ -25,7 +25,7 @@ namespace HELPERS {
 
 	typedef std::vector<float> AudioBuffer;
 
-	inline float noteNumToHz(int note_num) {
+	inline double noteNumToHz(int note_num) {
 		return 440.0 * pow(2.0, (note_num - 69.0) / 12.0);
 	}
 
@@ -40,8 +40,8 @@ namespace HELPERS {
 	/// </summary>
 	class ValueSmoother {
 		public:
-			float getSmoothedValue(float target) {
-				float difference = target - lastValue;
+			double getSmoothedValue(double target) {
+				double difference = target - lastValue;
 				// Snap to target if the difference is very small
 				if (std::abs(difference) < 1e-9f) {
 					lastValue = target;
@@ -51,7 +51,7 @@ namespace HELPERS {
 				}
 				return lastValue;
 			}
-			void setSmoothTime(float time_ms, int sample_rate) {
+			void setSmoothTime(double time_ms, int sample_rate) {
 				if (time_ms > 0) {
 					smoothFactor = 1.0f - expf(-2.0f * 3.141592653589f / (time_ms * 0.001f * sample_rate));
 				}
@@ -64,8 +64,8 @@ namespace HELPERS {
 			}
 
 		private:
-			float lastValue = 0;
-			float smoothFactor = 0.005;
+			double lastValue = 0;
+			double smoothFactor = 0.005;
 	};
 	
 

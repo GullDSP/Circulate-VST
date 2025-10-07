@@ -124,7 +124,7 @@ namespace CIRCULATE_PARAMS {
 	/// </summary>
 	class ParamUnit {
 	public:
-		ParamUnit(int paramID = 0, float default_value = 0, bool sampleAccurate = false, int hostBlockSize = 0) {
+		ParamUnit(int paramID = 0, double default_value = 0, bool sampleAccurate = false, int hostBlockSize = 0) {
 			value = default_value;
 			id = paramID;
 			smoothedValue = default_value;
@@ -139,7 +139,7 @@ namespace CIRCULATE_PARAMS {
 		/// Set parameters value and set dirty
 		/// </summary>
 		/// <param name="value"></param>
-		void set(float value) {
+		void set(double value) {
 			this->value = value;
 			setDirty();
 		}
@@ -148,11 +148,11 @@ namespace CIRCULATE_PARAMS {
 		/// smoothed
 		/// </summary>
 		/// <returns></returns>
-		float getSmoothed() {
+		double getSmoothed() {
 
-			float difference = value - smoothedValue;
+			double difference = value - smoothedValue;
 
-			if (std::abs(difference) < 0.001f)
+			if (std::abs(difference) < 0.01f)
 			{
 				smoothedValue = value;
 			}
@@ -164,7 +164,7 @@ namespace CIRCULATE_PARAMS {
 
 			return smoothedValue;
 		}
-		float getSampleAccurateSmoothed(int index) {
+		double getSampleAccurateSmoothed(int index) {
 			value = BlockValues[index];
 
 			return getSmoothed();
@@ -172,7 +172,7 @@ namespace CIRCULATE_PARAMS {
 		int getID() const {
 			return id;
 		}
-		void setSmoothTime(float timeInMs, float sampleRate) {
+		void setSmoothTime(double timeInMs, int sampleRate) {
 			if (timeInMs > 0) {
 				smoothFactor = 1.0f - expf(-2.0f * 3.141592653589f / (timeInMs * 0.001f * sampleRate));
 			}
@@ -181,7 +181,7 @@ namespace CIRCULATE_PARAMS {
 				wantsSmoothing = false;
 			}
 		}
-		float getSampleAccurateValue(int s) {
+		double getSampleAccurateValue(int s) {
 			return BlockValues[s];
 		}
 
@@ -189,11 +189,11 @@ namespace CIRCULATE_PARAMS {
 		/// Get unsmoothed value and set clean
 		/// </summary>
 		/// <returns></returns>
-		float getExplicit() {
+		double getExplicit() {
 
 			return value;
 		}
-		float getLastValue() const {
+		double getLastValue() const {
 
 			if (BlockValues.empty()) {
 				return value;
@@ -218,7 +218,7 @@ namespace CIRCULATE_PARAMS {
 		/// last result from the previous block
 		/// </summary>
 		void fillWithLastKnown() {
-			float lastValue = getLastValue();
+			double lastValue = getLastValue();
 
 			for (int i = 0; i < blockSize; i++) {
 
@@ -231,7 +231,7 @@ namespace CIRCULATE_PARAMS {
 		/// Fill the parameter block with an arbitrary value (0...1)
 		/// </summary>
 		/// <param name="value"></param>
-		void fillWith(float value) {
+		void fillWith(double value) {
 
 			for (int i = 0; i < blockSize; i++) {
 
@@ -240,16 +240,15 @@ namespace CIRCULATE_PARAMS {
 			}
 
 		}
-		float smoothFactor = 0.005;
-		std::vector<float> BlockValues;
+		double smoothFactor = 0.005;
+		std::vector<double> BlockValues;
 		bool wantsSmoothing = true;
 	private:
-		float value = 0;
-		float smoothedValue = 0;
+		double value = 0;
+		double smoothedValue = 0;
 		int id = 0;
 		bool dirty = false;
 		int blockSize = 0;
-		
 		
 	};
 

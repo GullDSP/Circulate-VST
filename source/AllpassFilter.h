@@ -63,9 +63,9 @@ public:
 	/// <param name="freqHz"></param>
 	/// <param name="q"> Normalised 0 to 1, internally clamped</param>
 
-	static void calculateCoefficients(float freq_hz, float q, int sample_rate, AllpassInfo& State) {
+	static void calculateCoefficients(double freq_hz, double q, int sample_rate, AllpassInfo& State) {
 		
-		float q_actual = 0.5f + (q * 9.5f);
+		double q_actual = 0.5f + (q * 9.5f);
 
 		// Calculate SVF coefficients, and set as targets
 		State.g_target = ((E_PI * freq_hz) / (double)sample_rate);
@@ -74,8 +74,8 @@ public:
 		State.k_target = 1.0 / (2.0 * q_actual);
 
 		//Smooth				
-		float diff_k = State.k_target - State.k;
-		float diff_g = State.g_target - State.g;
+		double diff_k = State.k_target - State.k;
+		double diff_g = State.g_target - State.g;
 
 		State.k += diff_k * State.smoothFactor;
 		State.g += diff_g * State.smoothFactor;
