@@ -125,9 +125,16 @@ void CirculateProcessor::getParamChangesThisBlock(Steinberg::Vst::IParamValueQue
 		ParamValues[i] = currentValue;
 	}
 	// Pre Smooth
-	for (int i = 0; i < blockSize; i++) {
-		Param->BlockValues[i] = Param->getSampleAccurateSmoothed(i);
+
+	if (Param->wantsSmoothing) {
+
+		for (int i = 0; i < blockSize; i++) {
+			Param->BlockValues[i] = Param->getSampleAccurateSmoothed(i);
+		}
+
 	}
+
+
 
 }
 

@@ -53,12 +53,12 @@ namespace CIRCULATE_PARAMS {
 
 	inline void registerParameters(Steinberg::Vst::ParameterContainer& parameters) {
 
-		Steinberg::Vst::StringListParameter* CenterParam = new Steinberg::Vst::StringListParameter(STR16("Note"), kCenterST);
+		Steinberg::Vst::StringListParameter* centerNoteParam = new Steinberg::Vst::StringListParameter(STR16("Note"), kCenterST);
 
 		for (int i = 0; i < MAX_NOTE_NUM; i++) {
-			CenterParam->appendString(noteNames[i]);
+			centerNoteParam->appendString(noteNames[i]);
 		}
-		parameters.addParameter(CenterParam);
+		parameters.addParameter(centerNoteParam);
 		
 		Steinberg::Vst::StringListParameter* HzSwitch = new Steinberg::Vst::StringListParameter(STR16("SwitchHz"), CirculateParamIDs::kSetSwitch, 0, Steinberg::Vst::ParameterInfo::kIsHidden);
 			HzSwitch->appendString(STR16("Hz"));
@@ -68,7 +68,7 @@ namespace CIRCULATE_PARAMS {
 
 		// Center Hz param
 	
-		auto* cutoffParam = new LogRangeParameter(
+		auto* centerHzParam = new LogRangeParameter(
 			STR16("Frequency"),
 			CIRCULATE_PARAMS::kCenter,
 			MIN_FREQ_HZ,
@@ -79,7 +79,7 @@ namespace CIRCULATE_PARAMS {
 		
 		);
 		
-		parameters.addParameter(cutoffParam);
+		parameters.addParameter(centerHzParam);
 
 
 		// Note Offset Param
@@ -105,8 +105,8 @@ namespace CIRCULATE_PARAMS {
 			0,                            
 			MAX_NUM_STAGES,                         
 			32,                           
-			MAX_NUM_STAGES,
-			Steinberg::Vst::ParameterInfo::kNoFlags 
+			0, // Zero steps, we don't need the steps internally (it is cast to Int)
+			Steinberg::Vst::ParameterInfo::kNoFlags
 		);
 		depthParam->setPrecision(0);
 
@@ -178,6 +178,7 @@ namespace CIRCULATE_PARAMS {
 			}
 			else {
 				smoothFactor = 1.0f; // No smoothing
+				wantsSmoothing = false;
 			}
 		}
 		float getSampleAccurateValue(int s) {
@@ -241,12 +242,14 @@ namespace CIRCULATE_PARAMS {
 		}
 		float smoothFactor = 0.005;
 		std::vector<float> BlockValues;
+		bool wantsSmoothing = true;
 	private:
 		float value = 0;
 		float smoothedValue = 0;
 		int id = 0;
 		bool dirty = false;
 		int blockSize = 0;
+		
 		
 	};
 
