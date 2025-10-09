@@ -61,6 +61,8 @@ protected:
 	CIRCULATE_PARAMS::AudioEffectParameters* Params = nullptr;
 
 	bool isBypassed = false;
+
+	int lastBlockSize = 0;
 	
 };
 

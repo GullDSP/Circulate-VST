@@ -123,16 +123,15 @@ void CirculateProcessor::getParamChangesThisBlock(Steinberg::Vst::IParamValueQue
 		}
 
 		ParamValues[i] = currentValue;
+
+		// Store last Explicit value for unsmoothed parameters
+		Param->lastExplicit = currentValue;
 	}
 	// Pre Smooth
 
-	if (Param->wantsSmoothing) {
+	Param->smoothBlockValues();
 
-		for (int i = 0; i < blockSize; i++) {
-			Param->BlockValues[i] = Param->getSampleAccurateSmoothed(i);
-		}
 
-	}
 
 
 
@@ -144,14 +143,11 @@ tresult PLUGIN_API CirculateProcessor::process (Vst::ProcessData& data)
 
 	//////////////////////////////////////////////
 
+
 	// Pre-Fill param values with last value (to prevent previous
 	// block being re-read
 	if (Params) {
-		for (auto& param : Params->ParameterList) {
-			
-			param->fillWithLastKnown();
-		
-		}
+		Params->setCurrentBlockSizeAndPreFill(data.numSamples);
 	}
 
 	if (data.inputParameterChanges)
@@ -247,6 +243,7 @@ tresult PLUGIN_API CirculateProcessor::process (Vst::ProcessData& data)
 		
 	}
 
+	
 	return kResultOk;
 }
 
@@ -265,6 +262,18 @@ tresult PLUGIN_API CirculateProcessor::setupProcessing (Vst::ProcessSetup& newSe
 	// Send pointer to params to effect
 	AudioEffect[0].getParams(Params);
 	AudioEffect[1].getParams(Params);
+
+
+	// Initialise Defaults
+	if (Params) {
+		Params->Depth.fillWith(DEFAULT_DEPTH);
+		Params->Center.fillWith(DEFAULT_CENTER);
+		Params->Note.fillWith(DEFAULT_NOTE);
+		Params->Focus.fillWith(DEFAULT_FOCUS);
+		Params->CenterType.fillWith(DEFAULT_SWITCH);
+		Params->NoteOffset.fillWith(DEFAULT_OFFSET);
+		Params->Feedback.fillWith(DEFAULT_FEED);
+	}
 
 	return AudioEffect::setupProcessing (newSetup);
 }
@@ -319,12 +328,7 @@ tresult PLUGIN_API CirculateProcessor::setState (IBStream* state)
 		isBypassed = false;
 	}
 
-	// Bypass smoothing for loaded values
 
-	for (auto& param : Params->ParameterList) {
-		param->snapSmoothedValue();
-		
-	}
 
 	return kResultOk;
 }

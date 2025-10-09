@@ -13,6 +13,17 @@
 /// and the registration function to register parameters with the controller
 /// </summary>
 namespace CIRCULATE_PARAMS {
+
+	// DEFAULTS
+	#define DEFAULT_CENTER 0.5
+	#define DEFAULT_FOCUS 0.5
+	#define DEFAULT_DEPTH 0.5
+	#define DEFAULT_FEED 0.5
+	#define DEFAULT_NOTE 0.5
+	#define DEFAULT_OFFSET 0.5
+	#define DEFAULT_SWITCH 0.0
+
+
 	inline const Steinberg::tchar* noteNames[128] = {
 		// Octave -1
 		STR16("C-1"), STR16("C#-1"), STR16("D-1"), STR16("D#-1"), STR16("E-1"), STR16("F-1"), STR16("F#-1"), STR16("G-1"), STR16("G#-1"), STR16("A-1"), STR16("A#-1"), STR16("B-1"),
@@ -64,7 +75,9 @@ namespace CIRCULATE_PARAMS {
 			HzSwitch->appendString(STR16("Hz"));
 			HzSwitch->appendString(STR16("ST"));
 		
+		HzSwitch->setNormalized(DEFAULT_SWITCH);
 		parameters.addParameter(HzSwitch);
+
 
 		// Center Hz param
 	
@@ -73,12 +86,12 @@ namespace CIRCULATE_PARAMS {
 			CIRCULATE_PARAMS::kCenter,
 			MIN_FREQ_HZ,
 			MAX_FREQ_HZ,
-			0.5,
+			0.5 ,
 			nullptr,
 			Steinberg::Vst::ParameterInfo::kCanAutomate
 		
 		);
-		
+		centerHzParam->setNormalized(DEFAULT_CENTER);
 		parameters.addParameter(centerHzParam);
 
 
@@ -104,7 +117,7 @@ namespace CIRCULATE_PARAMS {
 			STR16("x"),                     
 			0,                            
 			MAX_NUM_STAGES,                         
-			32,                           
+			DEFAULT_DEPTH * 64,                           
 			0, // Zero steps, we don't need the steps internally (it is cast to Int)
 			Steinberg::Vst::ParameterInfo::kNoFlags
 		);
@@ -114,8 +127,8 @@ namespace CIRCULATE_PARAMS {
 
 		parameters.addParameter(depthParam);
 		parameters.addParameter(STR16("Bypass"), STR16(""), 1, 0, Steinberg::Vst::ParameterInfo::kIsBypass, CirculateParamIDs::kBypass);
-		parameters.addParameter(STR16("Focus"), STR16(""), 0, 0.5, flags, CirculateParamIDs::kFocus);
-		parameters.addParameter(STR16("Feedback"), STR16(""), 0, 0.5, flags, CirculateParamIDs::kFeed);
+		parameters.addParameter(STR16("Focus"), STR16(""), 0, DEFAULT_FOCUS, flags, CirculateParamIDs::kFocus);
+		parameters.addParameter(STR16("Feedback"), STR16(""), 0, DEFAULT_FEED, flags, CirculateParamIDs::kFeed);
 
 	}
 	/// <summary>
@@ -124,52 +137,24 @@ namespace CIRCULATE_PARAMS {
 	/// </summary>
 	class ParamUnit {
 	public:
-		ParamUnit(int paramID = 0, double default_value = 0, bool sampleAccurate = false, int hostBlockSize = 0) {
+		ParamUnit(int paramID = 0, double default_value = 0, bool sampleAccurate = false, int maxBlockSize = 0) {
 			value = default_value;
+			lastExplicit = default_value;
+			smoothedValue = default_value;
 			id = paramID;
 			smoothedValue = default_value;
-			blockSize = hostBlockSize;
+			this->maxBlockSize = maxBlockSize;
+			this->currentBlockSize = maxBlockSize;
+
 			if (sampleAccurate) {
-				BlockValues.resize(hostBlockSize, default_value);
+				BlockValues.resize(maxBlockSize, default_value);
 
 			}
 
-		}
-		/// <summary>
-		/// Set parameters value and set dirty
-		/// </summary>
-		/// <param name="value"></param>
-		void set(double value) {
-			this->value = value;
-			setDirty();
-		}
-		/// <summary>
-		/// Get parameters current value
-		/// smoothed
-		/// </summary>
-		/// <returns></returns>
-		double getSmoothed() {
 
-			double difference = value - smoothedValue;
 
-			if (std::abs(difference) < 0.01f)
-			{
-				smoothedValue = value;
-			}
-			else
-			{
-				
-				smoothedValue += difference * smoothFactor;
-			}
-
-			return smoothedValue;
 		}
-		double getSampleAccurateSmoothed(int index) {
-			value = BlockValues[index];
-
-			return getSmoothed();
-		}
-		int getID() const {
+		int getID() {
 			return id;
 		}
 		void setSmoothTime(double timeInMs, int sampleRate) {
@@ -184,72 +169,68 @@ namespace CIRCULATE_PARAMS {
 		double getSampleAccurateValue(int s) {
 			return BlockValues[s];
 		}
+		void smoothBlockValues() {
 
-		/// <summary>
-		/// Get unsmoothed value and set clean
-		/// </summary>
-		/// <returns></returns>
-		double getExplicit() {
+			// Skip if the parameter doesn't want to be smoothed
+			if (!wantsSmoothing) {
+				lastValue = lastExplicit;
+				smoothedValue = lastExplicit;
+			};
 
-			return value;
+			for (int i = 0; i < currentBlockSize; i++) {
+
+				double diff = BlockValues[i] - smoothedValue;
+				if (abs(diff) < 0.01) {
+					smoothedValue = BlockValues[i];
+					diff = 0;
+				}
+
+				smoothedValue += diff * smoothFactor;
+				BlockValues[i] = smoothedValue;
+				lastValue = smoothedValue;
+			}
 		}
-		double getLastValue() const {
-
-			if (BlockValues.empty()) {
-				return value;
+		double getLastValue() {
+			return lastValue;
+		}
+		void fillWithLastKnown() {
+			for (int i = 0; i < currentBlockSize; i++) {
+				BlockValues[i] = lastExplicit;
+			}
+		}
+		void fillWith(double value) {
+			for (int i = 0; i < currentBlockSize; i++) {
+				BlockValues[i] = value;
 			}
 
-			return BlockValues[blockSize - 1];
-		}
-		bool isDirty() const {
-			return dirty;
-		}
-		void setDirty() {
-			dirty = true;
-		}
-		void setClean() {
-			dirty = false;
-		}
-		void snapSmoothedValue() {
+			// Snap smoothing related memory to this value
+			// to stop ramping at start of block when smoothed
+			lastValue = value;
 			smoothedValue = value;
 		}
-		/// <summary>
-		/// Fill the current parameter block with the 
-		/// last result from the previous block
-		/// </summary>
-		void fillWithLastKnown() {
-			double lastValue = getLastValue();
+		void setCurrentBlockSize(int newSize) {
+			currentBlockSize = newSize;
 
-			for (int i = 0; i < blockSize; i++) {
-
-				BlockValues[i] = lastValue;
-
+			if (newSize == 0) {
+				currentBlockSize = 1;
+				BlockValues[0] = lastValue;
+				smoothedValue = lastValue;
 			}
-
 		}
-		/// <summary>
-		/// Fill the parameter block with an arbitrary value (0...1)
-		/// </summary>
-		/// <param name="value"></param>
-		void fillWith(double value) {
-
-			for (int i = 0; i < blockSize; i++) {
-
-				BlockValues[i] = value;
-
-			}
-
-		}
-		double smoothFactor = 0.005;
 		std::vector<double> BlockValues;
 		bool wantsSmoothing = true;
+		double lastExplicit = 0;
+
 	private:
+
 		double value = 0;
+		double lastValue = 0;
 		double smoothedValue = 0;
+		double smoothFactor = 0.005;
 		int id = 0;
-		bool dirty = false;
-		int blockSize = 0;
-		
+		int maxBlockSize = 0;
+		int currentBlockSize = 0;
+
 	};
 
 	/// <summary>
@@ -259,12 +240,12 @@ namespace CIRCULATE_PARAMS {
 	class AudioEffectParameters {
 	public:
 		AudioEffectParameters(int blockSize, int sampleRate) :
-			Center(kCenter, 0.5, true, blockSize),
-			Focus(kFocus, 0.0, true, blockSize),
-			Note(kCenterST, 0.5, true, blockSize),
-			Depth(kDepth, 0.5, true, blockSize),
-			CenterType(kSetSwitch, 0.0, true, blockSize),
-			NoteOffset(kNoteOffset, 0.5, true, blockSize),
+			Center(kCenter, DEFAULT_CENTER, true, blockSize),
+			Focus(kFocus, DEFAULT_FOCUS, true, blockSize),
+			Note(kCenterST, DEFAULT_NOTE, true, blockSize),
+			Depth(kDepth, DEFAULT_DEPTH, true, blockSize),
+			CenterType(kSetSwitch, DEFAULT_SWITCH, true, blockSize),
+			NoteOffset(kNoteOffset, DEFAULT_OFFSET, true, blockSize),
 
 			Feedback(kFeed, 0.5, true, blockSize)
 
@@ -287,9 +268,9 @@ namespace CIRCULATE_PARAMS {
 
 
 			// Disable smoothing on discrete parameters
-			Depth.setSmoothTime(0, sampleRate);
+			Depth.setSmoothTime(5, sampleRate);
 			CenterType.setSmoothTime(0, sampleRate);
-			Note.setSmoothTime(0, sampleRate);
+			Note.setSmoothTime(0, sampleRate); // Note is smoothed after conversion to Hz in main loop
 		}
 		/// <summary>
 		/// Return pointer to a parameter unit
@@ -309,16 +290,16 @@ namespace CIRCULATE_PARAMS {
 			return nullptr;
 		}
 
-		void setAllClean() {
-			Center.setClean();
-			Focus.setClean();
-			Note.setClean();
-			Depth.setClean();
-			CenterType.setClean();
-			NoteOffset.setClean();
-			Feedback.setClean();
+		void setCurrentBlockSizeAndPreFill(int size) {
+			for (auto& param : ParameterList) {
+
+				param->setCurrentBlockSize(size);
+				param->fillWithLastKnown();
+		
+			}
 
 		}
+
 
 		//Parameters-----
 		ParamUnit Center;

@@ -65,7 +65,7 @@ public:
 
 	static void calculateCoefficients(double freq_hz, double q, int sample_rate, AllpassInfo& State) {
 		
-		double q_actual = 0.5f + (q * 9.5f);
+		double q_actual = 0.5 + (q * 6.0);
 
 		// Calculate SVF coefficients, and set as targets
 		State.g_target = ((E_PI * freq_hz) / (double)sample_rate);
@@ -114,7 +114,7 @@ public:
 		double R = State->k;
 		double d = 1.0 / (1.0 + 2 * R * g + pow(g, 2.0));
 		double BP = (g * (x - s2) + s1) * d;
-
+		
 		// Store old states
 		double old_s1 = s1;
 		double old_s2 = s2;

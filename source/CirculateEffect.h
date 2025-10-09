@@ -78,8 +78,8 @@ public:
 			
 		for (int s = 0; s < numSamples; s++) {
 
-			// Get num stages
-			mNumActiveStages = pParams->Depth.getSampleAccurateValue(s) * MAX_NUM_STAGES;
+			// Get num stages (+0.5 for crude rounding)
+			mNumActiveStages = 0.5 + (pParams->Depth.getSampleAccurateValue(s) * MAX_NUM_STAGES);
 			
 			// Get Frequency
 			mCenterHz = updateFrequency(s);
@@ -137,18 +137,18 @@ public:
 private:
 	AllpassFilter AP[MAX_NUM_STAGES];
 
-	CIRCULATE_PARAMS::AudioEffectParameters* pParams;
+	CIRCULATE_PARAMS::AudioEffectParameters* pParams = nullptr;
 	AllpassFilter::AllpassInfo FilterState;
 
 	/// Local pointer to access global allpass state
 	AllpassFilter::AllpassInfo* pState = nullptr;
 	HELPERS::SetupInfo Setup;
 
-	double mCenterHz = 0;
-	double mFocus	= 0;
+	double mCenterHz = DEFAULT_CENTER;
+	double mFocus	= DEFAULT_FOCUS;
 	double mNoteNumHz		= 0;
 	double mNoteOffsetHz		= 0;
-	int	mNumActiveStages	= 32;
+	int	mNumActiveStages	= DEFAULT_DEPTH * MAX_NUM_STAGES;
 
 	bool mUseHzControl	 = true;
 	double maxAllowedFreq = 0;
