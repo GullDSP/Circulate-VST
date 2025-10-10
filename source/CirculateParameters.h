@@ -69,6 +69,7 @@ namespace CIRCULATE_PARAMS {
 		for (int i = 0; i < MAX_NOTE_NUM; i++) {
 			centerNoteParam->appendString(noteNames[i]);
 		}
+		centerNoteParam->setNormalized(DEFAULT_NOTE);
 		parameters.addParameter(centerNoteParam);
 		
 		Steinberg::Vst::StringListParameter* HzSwitch = new Steinberg::Vst::StringListParameter(STR16("SwitchHz"), CirculateParamIDs::kSetSwitch, 0, Steinberg::Vst::ParameterInfo::kIsHidden);
@@ -117,11 +118,12 @@ namespace CIRCULATE_PARAMS {
 			STR16("x"),                     
 			0,                            
 			MAX_NUM_STAGES,                         
-			DEFAULT_DEPTH * 64,                           
+			0,                           
 			0, // Zero steps, we don't need the steps internally (it is cast to Int)
 			Steinberg::Vst::ParameterInfo::kNoFlags
 		);
 		depthParam->setPrecision(0);
+		depthParam->setNormalized(DEFAULT_DEPTH);
 
 		int flags = Steinberg::Vst::ParameterInfo::kCanAutomate;
 
@@ -175,12 +177,13 @@ namespace CIRCULATE_PARAMS {
 			if (!wantsSmoothing) {
 				lastValue = lastExplicit;
 				smoothedValue = lastExplicit;
+				return;
 			};
-
+			
 			for (int i = 0; i < currentBlockSize; i++) {
 
 				double diff = BlockValues[i] - smoothedValue;
-				if (abs(diff) < 0.01) {
+				if (abs(diff) < 1e-3) {
 					smoothedValue = BlockValues[i];
 					diff = 0;
 				}
@@ -268,7 +271,8 @@ namespace CIRCULATE_PARAMS {
 
 
 			// Disable smoothing on discrete parameters
-			Depth.setSmoothTime(5, sampleRate);
+			Depth.setSmoothTime(0, sampleRate);
+			Depth.wantsSmoothing = false;
 			CenterType.setSmoothTime(0, sampleRate);
 			Note.setSmoothTime(0, sampleRate); // Note is smoothed after conversion to Hz in main loop
 		}
@@ -299,7 +303,11 @@ namespace CIRCULATE_PARAMS {
 			}
 
 		}
-
+		void smoothAllParameters() {
+			for (auto& param : ParameterList) {
+				param->smoothBlockValues();
+			}
+		}
 
 		//Parameters-----
 		ParamUnit Center;

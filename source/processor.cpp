@@ -77,66 +77,51 @@ tresult PLUGIN_API CirculateProcessor::setActive (TBool state)
 /// <param name="paramID"></param>
 /// <param name="blockSize"></param>
 void CirculateProcessor::getParamChangesThisBlock(Steinberg::Vst::IParamValueQueue* queue, int paramID, int blockSize) {
-
-	// Get the target parameter value vector from the parameter object
 	if (paramID < 1) {
 		return;
 	}
+
 	CIRCULATE_PARAMS::ParamUnit* Param = Params->getParameter(paramID);
 	double* ParamValues = nullptr;
 	if (Param) {
-		 ParamValues = Param->BlockValues.data();
+		ParamValues = Param->BlockValues.data();
 	}
 	else {
 		return;
 	}
-	
-	// Iterate over samples, checking if there is a change. Otherwise set as last value
-	Steinberg::Vst::ParamValue currentValue = 0;
-	Steinberg::Vst::ParamValue nextValue = 0;
 
-	int changeIndex = 0;
-	int nextChange = -1;
 	int numChanges = queue->getPointCount();
 
-	if (numChanges > 0) {
-		queue->getPoint(0, nextChange, nextValue);
+	if (numChanges == 0) {
+		return; // No changes, already prefilled
 	}
-	
-	// Get last value from previous block
-	currentValue = Param->getLastValue();
+
+	// Get last raw value from previous block
+	Steinberg::Vst::ParamValue currentValue = Param->lastExplicit;
+
+	int changeIndex = 0;
+	int32 sampleOffset = 0;
+	Steinberg::Vst::ParamValue value = 0;
 
 	for (int i = 0; i < blockSize; i++) {
-		
+		// Process all changes that occur at or before this sample
+		while (changeIndex < numChanges) {
+			queue->getPoint(changeIndex, sampleOffset, value);
 
-
-		if (i == nextChange) {
-
-			currentValue = nextValue;
-			changeIndex++;
-
-			if (changeIndex < numChanges) {
-				queue->getPoint(changeIndex, nextChange, nextValue);
-				
+			if (sampleOffset <= i) {
+				currentValue = value;
+				changeIndex++;
 			}
-
+			else {
+				break; // Future change so stop here (if multiple changes this index get all and keep latest)
+			}
 		}
 
 		ParamValues[i] = currentValue;
-
-		// Store last Explicit value for unsmoothed parameters
-		Param->lastExplicit = currentValue;
 	}
-	// Pre Smooth
 
-	Param->smoothBlockValues();
-
-
-
-
-
+	Param->lastExplicit = currentValue;
 }
-
 //------------------------------------------------------------------------
 tresult PLUGIN_API CirculateProcessor::process (Vst::ProcessData& data)
 {
@@ -181,9 +166,15 @@ tresult PLUGIN_API CirculateProcessor::process (Vst::ProcessData& data)
 			
 		}
 	}
+
+	// Smooth all parameter blocks even if no new changes received, so that smoothing crosses
+	// block boundaries
+	if (Params) {
+		Params->smoothAllParameters();
+	}
 	
 
-	if (!data.numInputs) {
+ 	if (!data.numInputs) {
 		return false;
 	}
 	if (!data.numOutputs) {

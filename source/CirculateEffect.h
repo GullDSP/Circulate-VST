@@ -79,7 +79,7 @@ public:
 		for (int s = 0; s < numSamples; s++) {
 
 			// Get num stages (+0.5 for crude rounding)
-			mNumActiveStages = 0.5 + (pParams->Depth.getSampleAccurateValue(s) * MAX_NUM_STAGES);
+			mNumActiveStages = static_cast<int>(pParams->Depth.getSampleAccurateValue(s) * MAX_NUM_STAGES + 0.5);
 			
 			// Get Frequency
 			mCenterHz = updateFrequency(s);
@@ -175,7 +175,7 @@ private:
 
 		if (!mUseHzControl) {
 			freqHz = pParams->Note.getSampleAccurateValue(s);
-			freqHz = HELPERS::noteNumToHz(freqHz * MAX_NOTE_NUM);
+			freqHz = HELPERS::noteNumToHz((freqHz * MAX_NOTE_NUM));
 
 			// Smooth Note after fetching Hz. There is no point smoothing the 
 			// value before it is converted to Hz
