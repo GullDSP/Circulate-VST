@@ -18,7 +18,7 @@ class CirculateProcessor : public Steinberg::Vst::AudioEffect
 {
 public:
 	CirculateProcessor ();
-	~CirculateProcessor () SMTG_OVERRIDE;
+	~CirculateProcessor() SMTG_OVERRIDE;
 
     // Create function
 	static Steinberg::FUnknown* createInstance (void* /*context*/) 
@@ -53,7 +53,6 @@ public:
 
 	Steinberg::tresult PLUGIN_API setBusArrangements(Steinberg::Vst::SpeakerArrangement* inputs, Steinberg::int32 numIns, Steinberg::Vst::SpeakerArrangement* outputs, Steinberg::int32 numOuts) SMTG_OVERRIDE;
 
-	void getParamChangesThisBlock(Steinberg::Vst::IParamValueQueue* queue, int paramID, int blockSize);
 
 //------------------------------------------------------------------------
 protected:

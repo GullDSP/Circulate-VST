@@ -22,7 +22,15 @@ CirculateProcessor::CirculateProcessor ()
 
 //------------------------------------------------------------------------
 CirculateProcessor::~CirculateProcessor ()
-{}
+{
+	if (Params)
+	{
+		delete Params;
+		Params = nullptr;
+	}
+
+
+}
 
 //------------------------------------------------------------------------
 tresult PLUGIN_API CirculateProcessor::initialize (FUnknown* context)
@@ -70,58 +78,7 @@ tresult PLUGIN_API CirculateProcessor::setActive (TBool state)
 	//--- called when the Plug-in is enable/disable (On/Off) -----
 	return AudioEffect::setActive (state);
 }
-/// <summary>
-/// Get all changes for a parameter and put them in a vector
-/// </summary>
-/// <param name="queue"></param>
-/// <param name="paramID"></param>
-/// <param name="blockSize"></param>
-void CirculateProcessor::getParamChangesThisBlock(Steinberg::Vst::IParamValueQueue* queue, int paramID, int blockSize) {
-	if (paramID < 1) {
-		return;
-	}
 
-	CIRCULATE_PARAMS::ParamUnit* Param = Params->getParameter(paramID);
-	double* ParamValues = nullptr;
-	if (Param) {
-		ParamValues = Param->BlockValues.data();
-	}
-	else {
-		return;
-	}
-
-	int numChanges = queue->getPointCount();
-
-	if (numChanges == 0) {
-		return; // No changes, already prefilled
-	}
-
-	// Get last raw value from previous block
-	Steinberg::Vst::ParamValue currentValue = Param->lastExplicit;
-
-	int changeIndex = 0;
-	int32 sampleOffset = 0;
-	Steinberg::Vst::ParamValue value = 0;
-
-	for (int i = 0; i < blockSize; i++) {
-		// Process all changes that occur at or before this sample
-		while (changeIndex < numChanges) {
-			queue->getPoint(changeIndex, sampleOffset, value);
-
-			if (sampleOffset <= i) {
-				currentValue = value;
-				changeIndex++;
-			}
-			else {
-				break; // Future change so stop here (if multiple changes this index get all and keep latest)
-			}
-		}
-
-		ParamValues[i] = currentValue;
-	}
-
-	Param->lastExplicit = currentValue;
-}
 //------------------------------------------------------------------------
 tresult PLUGIN_API CirculateProcessor::process (Vst::ProcessData& data)
 {
@@ -161,7 +118,7 @@ tresult PLUGIN_API CirculateProcessor::process (Vst::ProcessData& data)
 					continue;
 				}
 
-				getParamChangesThisBlock(paramQueue, paramQueue->getParameterId(), data.numSamples);
+				Params->getParamChangesThisBlock(paramQueue, paramQueue->getParameterId(), data.numSamples);
 			}
 			
 		}
@@ -245,18 +202,14 @@ tresult PLUGIN_API CirculateProcessor::setupProcessing (Vst::ProcessSetup& newSe
 	Setup.blockSize = newSetup.maxSamplesPerBlock;
 	Setup.sampleRate = newSetup.sampleRate;
 
-	Params = new CIRCULATE_PARAMS::AudioEffectParameters(newSetup.maxSamplesPerBlock, newSetup.sampleRate);
 
 	AudioEffect[0].setSampleRateBlockSize(Setup);
 	AudioEffect[1].setSampleRateBlockSize(Setup);
 
-	// Send pointer to params to effect
-	AudioEffect[0].getParams(Params);
-	AudioEffect[1].getParams(Params);
-
-
 	// Initialise Defaults
-	if (Params) {
+	if (!Params) {
+		Params = new CIRCULATE_PARAMS::AudioEffectParameters(newSetup.maxSamplesPerBlock, newSetup.sampleRate);
+
 		Params->Depth.fillWith(DEFAULT_DEPTH);
 		Params->Center.fillWith(DEFAULT_CENTER);
 		Params->Note.fillWith(DEFAULT_NOTE);
@@ -265,6 +218,14 @@ tresult PLUGIN_API CirculateProcessor::setupProcessing (Vst::ProcessSetup& newSe
 		Params->NoteOffset.fillWith(DEFAULT_OFFSET);
 		Params->Feedback.fillWith(DEFAULT_FEED);
 	}
+
+
+	// Send pointer to params to effect
+	AudioEffect[0].getParams(Params);
+	AudioEffect[1].getParams(Params);
+
+
+
 
 	return AudioEffect::setupProcessing (newSetup);
 }

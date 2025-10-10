@@ -4,6 +4,7 @@
 
 #pragma once
 #include "public.sdk/source/vst/vsteditcontroller.h"
+#include "pluginterfaces/vst/ivstparameterchanges.h"
 #include "CirculateHelpers.h"
 #include "LogRangeParameter.h"
 #include <cmath>
@@ -118,16 +119,18 @@ namespace CIRCULATE_PARAMS {
 			STR16("x"),                     
 			0,                            
 			MAX_NUM_STAGES,                         
-			0,                           
+			DEFAULT_DEPTH,                           
 			0, // Zero steps, we don't need the steps internally (it is cast to Int)
 			Steinberg::Vst::ParameterInfo::kNoFlags
 		);
 		depthParam->setPrecision(0);
 		depthParam->setNormalized(DEFAULT_DEPTH);
 
+		parameters.addParameter(depthParam);
+
+
 		int flags = Steinberg::Vst::ParameterInfo::kCanAutomate;
 
-		parameters.addParameter(depthParam);
 		parameters.addParameter(STR16("Bypass"), STR16(""), 1, 0, Steinberg::Vst::ParameterInfo::kIsBypass, CirculateParamIDs::kBypass);
 		parameters.addParameter(STR16("Focus"), STR16(""), 0, DEFAULT_FOCUS, flags, CirculateParamIDs::kFocus);
 		parameters.addParameter(STR16("Feedback"), STR16(""), 0, DEFAULT_FEED, flags, CirculateParamIDs::kFeed);
@@ -194,7 +197,7 @@ namespace CIRCULATE_PARAMS {
 			}
 		}
 		double getLastValue() {
-			return lastValue;
+			return lastExplicit;
 		}
 		void fillWithLastKnown() {
 			for (int i = 0; i < currentBlockSize; i++) {
@@ -210,6 +213,7 @@ namespace CIRCULATE_PARAMS {
 			// to stop ramping at start of block when smoothed
 			lastValue = value;
 			smoothedValue = value;
+			lastExplicit = value;
 		}
 		void setCurrentBlockSize(int newSize) {
 			currentBlockSize = newSize;
@@ -271,8 +275,7 @@ namespace CIRCULATE_PARAMS {
 
 
 			// Disable smoothing on discrete parameters
-			Depth.setSmoothTime(0, sampleRate);
-			Depth.wantsSmoothing = false;
+			Depth.setSmoothTime(30, sampleRate);
 			CenterType.setSmoothTime(0, sampleRate);
 			Note.setSmoothTime(0, sampleRate); // Note is smoothed after conversion to Hz in main loop
 		}
@@ -307,6 +310,59 @@ namespace CIRCULATE_PARAMS {
 			for (auto& param : ParameterList) {
 				param->smoothBlockValues();
 			}
+		}
+
+		/// <summary>
+/// Get all changes for a parameter and put them in a vector
+/// </summary>
+/// <param name="queue"></param>
+/// <param name="paramID"></param>
+/// <param name="blockSize"></param>
+		void getParamChangesThisBlock(Steinberg::Vst::IParamValueQueue* queue, int paramID, int blockSize) {
+			if (paramID < 1) {
+				return;
+			}
+
+			CIRCULATE_PARAMS::ParamUnit* Param = getParameter(paramID);
+			double* ParamValues = nullptr;
+			if (Param) {
+				ParamValues = Param->BlockValues.data();
+			}
+			else {
+				return;
+			}
+
+			int numChanges = queue->getPointCount();
+
+			if (numChanges == 0) {
+				return; // No changes, already prefilled
+			}
+
+			// Get last raw value from previous block
+			Steinberg::Vst::ParamValue currentValue = Param->lastExplicit;
+
+			int changeIndex = 0;
+			int sampleOffset = 0;
+			double value = 0;
+
+			for (int i = 0; i < blockSize; i++) {
+				// Process all changes that occur at or before this sample
+				while (changeIndex < numChanges) {
+					queue->getPoint(changeIndex, sampleOffset, value);
+
+					if (sampleOffset <= i) {
+						currentValue = value;
+						changeIndex++;
+					}
+					else {
+						break; // Future change so stop here (if multiple changes this index get all and keep latest)
+					}
+				}
+
+				ParamValues[i] = currentValue;
+			}
+
+			Param->lastExplicit = currentValue;
 		}
 
 		//Parameters-----
