@@ -129,7 +129,8 @@ tresult PLUGIN_API CirculateProcessor::process (Vst::ProcessData& data)
 	if (Params) {
 		Params->smoothAllParameters();
 	}
-	
+
+
 
  	if (!data.numInputs) {
 		return false;
@@ -138,57 +139,41 @@ tresult PLUGIN_API CirculateProcessor::process (Vst::ProcessData& data)
 		return false;
 	}
 
-	if (data.inputs[0].numChannels != 2) {
+	int numChan = 0;
+	int numBus = 1;
+
+	int numOutChan = data.outputs[0].numChannels;
+	int numInChan = data.inputs[0].numChannels;
+
+	numChan = std::min<int>(numInChan, numOutChan);
+
+	if (numChan == 0) {
 		return false;
 	}
 
 	if (isBypassed) {
-		int numBus = 1;
-		int numChan = 2;
+		for (int c = 0; c < numChan; c++) {
+			float* in = data.inputs[0].channelBuffers32[c];
+			float* out = data.outputs[0].channelBuffers32[c];
 
-		for (int b = 0; b < numBus; b++) {
-			for (int c = 0; c < numChan; c++) {
-				float* in = data.inputs[b].channelBuffers32[c];
-				float* out = data.outputs[b].channelBuffers32[c];
+			memcpy(out, in, sizeof(float) * data.numSamples);
 
-				memcpy(out, in, sizeof(float) * data.numSamples);
-
-			}
 		}
-
 		return false;
 	}
 
 	if (data.numSamples > 0)
 	{
-		int numBus = 1;
-		int numChan = 2;
 
-		if (isBypassed) {
-			for (int b = 0; b < numBus; b++) {
-				for (int c = 0; c < numChan; c++) {
-					float* in = data.inputs[b].channelBuffers32[c];
-					float* out = data.outputs[b].channelBuffers32[c];
+		for (int c = 0; c < numChan; c++) {
+			float* in = data.inputs[0].channelBuffers32[c];
+			float* out = data.outputs[0].channelBuffers32[c];
 
-					memcpy(out, in, sizeof(float) * data.numSamples);
-		
-
-				}
-			}
-		}
-
-		for (int b = 0; b < numBus; b++) {
-			for (int c = 0; c < numChan; c++) {
-				float* in = data.inputs[b].channelBuffers32[c];
-				float* out = data.outputs[b].channelBuffers32[c];
-
-					AudioEffect[c].getBlock(in, out, data.numSamples);
+				AudioEffect[c].getBlock(in, out, data.numSamples);
 				
 				
 
-			}
 		}
-		
 	}
 
 	

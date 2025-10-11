@@ -8,6 +8,8 @@ namespace HELPERS {
 	#define MAX_FREQ_HZ 18000
 	#define MIN_FREQ_HZ 20
 	#define MAX_NUM_STAGES 64
+	
+
 	/// <summary>
 	/// Container for info about the current setup
 	/// </summary>
