@@ -25,8 +25,6 @@ namespace HELPERS {
 		int startIndex = 0;
 	};
 
-	typedef std::vector<float> AudioBuffer;
-
 	inline double noteNumToHz(int note_num) {
 		return 440.0 * pow(2.0, (note_num - 69.0) / 12.0);
 	}

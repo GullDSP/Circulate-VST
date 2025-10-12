@@ -6,6 +6,7 @@
 /// <summary>
 /// A limiter which is completely linear up to the threshold, 
 /// after this follows a tanh waveshaping function
+/// 
 /// </summary>
 /// <param name="x"></param>
 /// <param name="threshold"></param>
@@ -13,7 +14,7 @@
 static inline float getLimitedSample(float x, float threshold = 0.99) {
 
     float T = threshold;
-
+    // [TODO] Replace tanh with more efficient method
     if (x > T) {
         float w = (x - T) / (1.0 - T);
 

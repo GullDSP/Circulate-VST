@@ -147,10 +147,12 @@ tresult PLUGIN_API CirculateProcessor::process (Vst::ProcessData& data)
 
 	numChan = std::min<int>(numInChan, numOutChan);
 
+	// Return if either in or out have zero channels
 	if (numChan == 0) {
 		return false;
 	}
 
+	// If bypassed, copy in to out
 	if (isBypassed) {
 		for (int c = 0; c < numChan; c++) {
 			float* in = data.inputs[0].channelBuffers32[c];
@@ -292,6 +294,4 @@ tresult PLUGIN_API CirculateProcessor::getState (IBStream* state)
 	return kResultOk;
 }
 
-
-//------------------------------------------------------------------------
 } // namespace CirculateVST

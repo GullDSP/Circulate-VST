@@ -32,7 +32,7 @@ public:
 		double smoothFactor = 0.001;
 
 		void setSmoothTime(double smooth_ms, int sample_rate) {
-			double smooth_s = smooth_ms / 1000.0f;
+			double smooth_s = smooth_ms / 1000.0;
 			smoothFactor = 1.0 - exp(-1.0 / ( smooth_s * sample_rate));
 		}
 
@@ -128,7 +128,7 @@ public:
 		if (std::abs(s1) < 1e-20) s1 = 0.0;
 		if (std::abs(s2) < 1e-20) s2 = 0.0;
 
-		return x - 4 * R * BP;
+		return x - 4.0 * R * BP;
 	}
 
 

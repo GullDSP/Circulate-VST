@@ -24,6 +24,7 @@ public:
     // Create function
 	static Steinberg::FUnknown* createInstance (void* /*context*/)
 	{
+
 		return (Steinberg::Vst::IEditController*)new CirculateController;
 	}
 

@@ -11,7 +11,6 @@
 class CirculateEffect {
 public:
 	void setSampleRateBlockSize(HELPERS::SetupInfo Setup) {
-
 		for (int i = 0; i < MAX_NUM_STAGES; i++) {
 			AP[i].setSampleRateBlockSize(Setup);
 		}
@@ -36,22 +35,25 @@ public:
 
 		// Calculate max Hz for center frequency
 		// Defaulted to 18KHz, cut down for unusually low sample rates
-		float nyQuist = (Setup.sampleRate / 2.0f);
+		double nyQuist = (Setup.sampleRate / 2.0f);
 
 		maxAllowedFreq = MAX_FREQ_HZ;
 		if (nyQuist < MAX_FREQ_HZ) maxAllowedFreq = nyQuist - 500.0f;
 
 	}
+	/// <summary>
+	/// Set pointer used to access host/plugin parameters
+	/// </summary>
+	/// <param name="Parameters"></param>
 	void getParams(CIRCULATE_PARAMS::AudioEffectParameters* Parameters) {
 		pParams = Parameters;
 
 	}
 	void updateParams() {
 		// Parameters updated here are fine to be updated per block. Parameters updated using smoothed values
-		// are done in the processBlock method, so that new smoothed values are fetched each sample.
-		// These are however only passed to the AP filters once per block
+		// are done in the processBlock method, so that new smoothed values can be fetched each sample.
 
-		// Hz Switch
+		// Hz/ST Switch
 		float typeNorm = pParams->CenterType.getLastValue();
 		if (typeNorm >= 0.5f) {
 			mUseHzControl = false;
@@ -70,11 +72,9 @@ public:
 			return;
 		}
 
-		// For each sample, apply each allpass sample by sample. 
-		// New smoothed values are fetched every sample and update the filters.
-		// This is not so taxing, as the coefficients only need to be calculated once for all filters
-		// and the parameter changes for each block are all pre-fetched and smoothed at once to a vector (in Params)
-		// Allpasses read directly from the AllpassState FilterState object directly using a member pointer
+		// Apply each allpass stage in series
+		// Coefficients are only calculated once for all stages, and stored in FilterState
+		// Allpass filters have a member pointer to this, so read the updated values directly
 			
 		for (int s = 0; s < numSamples; s++) {
 
@@ -87,11 +87,11 @@ public:
 			// Get Q
 			mFocus = pParams->Focus.getSampleAccurateValue(s);
 
-			// Apply curve to Q, for more precision with lower values
+			// Apply curve to Q, for more precision with lower values, where there is more timbre variation
 			mFocus = mFocus * mFocus * mFocus;
 			
-			// Only need to calculate coefficients once...allpasses already have a pointer to FilterState 
-			// (passed in setSampleRateBlockSize)
+			// Only need to calculate coefficients once...allpasses already have a member pointer to FilterState 
+			// (set in setSampleRateBlockSize)
 			AllpassFilter::calculateCoefficients(mCenterHz, mFocus, Setup.sampleRate, FilterState);
 
 			// Scale feedback parameter, 
@@ -104,13 +104,14 @@ public:
 
 			feedback = (feedback - 0.5) * 1.98f;
 
+			// If no stages are active, don't use feedback
 			if (mNumActiveStages == 0) {
 				feedback = 0;
 			}
 
 			// Safety limit feedback
 			currentSample = getLimitedSample(currentSample);
-			// Add feedback, and compensate gain
+			// Add feedback
 			currentSample = inBuffer[s] + (feedback * currentSample);
 
 			// Gain compensation
@@ -185,7 +186,7 @@ private:
 
 			// Scale offset to + = 1 octave
 			mNoteOffsetHz = (2.0f * mNoteOffsetHz) - 1;
-			freqHz = freqHz * powf(2, mNoteOffsetHz);
+			freqHz = freqHz * pow(2.0, mNoteOffsetHz);
 		}
 
 		return freqHz;

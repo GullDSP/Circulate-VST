@@ -25,6 +25,8 @@ tresult PLUGIN_API CirculateController::initialize (FUnknown* context)
 		return result;
 	}
 
+	
+
 	CIRCULATE_PARAMS::registerParameters(parameters);
 
 	setKnobMode(Steinberg::Vst::KnobModes::kLinearMode);
@@ -49,6 +51,7 @@ tresult PLUGIN_API CirculateController::setComponentState (IBStream* state)
 		return kResultFalse;
 
 	IBStreamer streamer(state, kLittleEndian);
+	
 
 	double depth, center, note, focus, type, offset, bypass, feed;
 

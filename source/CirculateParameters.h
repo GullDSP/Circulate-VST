@@ -128,7 +128,6 @@ namespace CIRCULATE_PARAMS {
 
 		parameters.addParameter(depthParam);
 
-
 		int flags = Steinberg::Vst::ParameterInfo::kCanAutomate;
 
 		parameters.addParameter(STR16("Bypass"), STR16(""), 1, 0, Steinberg::Vst::ParameterInfo::kIsBypass, CirculateParamIDs::kBypass);
@@ -156,18 +155,16 @@ namespace CIRCULATE_PARAMS {
 
 			}
 
-
-
 		}
 		int getID() {
 			return id;
 		}
 		void setSmoothTime(double timeInMs, int sampleRate) {
 			if (timeInMs > 0) {
-				smoothFactor = 1.0f - expf(-2.0f * 3.141592653589f / (timeInMs * 0.001f * sampleRate));
+				smoothFactor = 1.0f - expf(-2.0 * 3.141592653589 / (timeInMs * 0.001 * sampleRate));
 			}
 			else {
-				smoothFactor = 1.0f; // No smoothing
+				smoothFactor = 1.0; // No smoothing
 				wantsSmoothing = false;
 			}
 		}
@@ -267,12 +264,11 @@ namespace CIRCULATE_PARAMS {
 			ParameterList.push_back(&NoteOffset);
 			ParameterList.push_back(&Feedback);
 
-			// Initialise smooth times to 20ms (50Hz)
+			// Initialise smooth times. 20ms ~ (50Hz)
 			Center.setSmoothTime(20, sampleRate);
 			Focus.setSmoothTime(20, sampleRate);
 			NoteOffset.setSmoothTime(20, sampleRate);
 			Feedback.setSmoothTime(10, sampleRate);
-
 
 			// Disable smoothing on discrete parameters
 			Depth.setSmoothTime(30, sampleRate);
@@ -293,10 +289,12 @@ namespace CIRCULATE_PARAMS {
 					return ParameterList[i];
 				}
 			}
-
 			return nullptr;
 		}
-
+		/// <summary>
+		/// Call in process block to update for variable block sizes
+		/// </summary>
+		/// <param name="size"></param>
 		void setCurrentBlockSizeAndPreFill(int size) {
 			for (auto& param : ParameterList) {
 
@@ -313,11 +311,11 @@ namespace CIRCULATE_PARAMS {
 		}
 
 		/// <summary>
-/// Get all changes for a parameter and put them in a vector
-/// </summary>
-/// <param name="queue"></param>
-/// <param name="paramID"></param>
-/// <param name="blockSize"></param>
+		/// Get all changes for a parameter and put them in its vector (BlockValues)
+		/// </summary>
+		/// <param name="queue"></param>
+		/// <param name="paramID"></param>
+		/// <param name="blockSize"></param>
 		void getParamChangesThisBlock(Steinberg::Vst::IParamValueQueue* queue, int paramID, int blockSize) {
 			if (paramID < 1) {
 				return;
@@ -355,7 +353,7 @@ namespace CIRCULATE_PARAMS {
 						changeIndex++;
 					}
 					else {
-						break; // Future change so stop here (if multiple changes this index get all and keep latest)
+						break; // Future change so stop here (if multiple changes this index, get all and keep latest)
 					}
 				}
 
