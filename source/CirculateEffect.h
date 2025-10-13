@@ -187,6 +187,15 @@ private:
 			// Scale offset to + = 1 octave
 			mNoteOffsetHz = (2.0f * mNoteOffsetHz) - 1;
 			freqHz = freqHz * pow(2.0, mNoteOffsetHz);
+
+			// Clamp (to stop offset moving above max)
+			if (freqHz > maxAllowedFreq) {
+				freqHz = maxAllowedFreq;
+			}
+			if (freqHz < MIN_FREQ_HZ) {
+				freqHz = MIN_FREQ_HZ;
+			}
+
 		}
 
 		return freqHz;
