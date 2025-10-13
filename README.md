@@ -19,10 +19,11 @@ www.youtube.com/watch?v=tcsrC33vn1s&t=1s
 <li><strong>Pitch</strong> - Sets the center frequency through MIDI note</li>
 <li><strong>Det</strong> - Allows smooth offset (+/- 1 Octave) of the center frequency from the selected MIDI note</li>
 <li><strong>Focus</strong> - The Q factor, or 'Resonance' of the allpass filters. Lower Q values spread the phase smearing over a wider range, higher values focus the smearing tighter around the center.</li>
-<li><strong>Depth</strong> - Sets the number of allpass filters in the filter bank, up to a maximum of 64. This parameter is not sample accurate (due to discrete nature)</li>
+<li><strong>Depth</strong> - Sets the number of allpass filters in the filter bank, up to a maximum of 64.</li>
 <li><strong>Feed</strong> - Feedback is introduced into the filter bank, this *will* lead to frequency spectrum changes, through cancelling or boosting affected frequencies.</li>
 <img width="304" height="160" alt="XXXXXXXX_snapshot_2 0x" src="https://github.com/user-attachments/assets/c2d43bf0-cc44-4c3a-83eb-300a56d641fe" />
-
+<h3>Version</h3>
+ - v1.0.5 fixes parameter issues with FLStudio 
 <h3>Acknowledgements</h3>
 <ul>
 <li>This project is built using the Steinberg VST 3 SDK(https://www.steinberg.net/developers/).</li>
