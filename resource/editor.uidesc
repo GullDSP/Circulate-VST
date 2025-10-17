@@ -1,7 +1,15 @@
 {
 	"vstgui-ui-description": {
 		"version": "1",
-		"bitmaps": {},
+		"bitmaps": {
+			"gulllogo": {
+				"path": "",
+				"data": {
+					"encoding": "base64",
+					"data": "iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAAXEAAAFxAbuK4fQAAAPhSURBVGhD7dZPTJtlHAfw7+9tKW3HxP7blkgyXZRhlhhiE6zJDARDMhNHPBjnZcncARJmYjDDK1eTRS/GTS8evChRXNAFLyoH43YQRTmQQIEOAkTWpAKlRWnf5+uhtOmetUBLW3G+n6RJ8/s9z/u+3zzP+wewWCwWi8VisVSL6IX9IukmeR7AMwDcAH4yDONLfdyhRvIVpdQC86iMAX3soUWyQymVzAZYX1/PD7NM0qbPOZSUUiPZCx8dHaXP52MymctFpdRj+pxaKHiPqJHnjsO0XQFxXO+h+/tusTtPAMDm5ibGx8fR0dEBZFbrTxE5JiJpfVq1GXoBAJC2vQnIGxCEADRDcAoiTwHoAFO5OQ0NDbkQO27+GyHKopT6LLeP8sTj8aXJycnLQ0NDAX1OLRTcWrtRSj0N4JaInEJmO3FmZkampqawvb0NAHA4HFtut3ve4XCMmab5aVdX18/6cSqtnCCPAPhcRF7K1oaHh5FOF99RTqcz2djYeMfpdF4PhUI3RYT6mIMqJ8j7ItKfXwuHw5iYmAC59/W5XK6//H7/D3V1dW+3tbVN6/1ylRPkroic1OsbGxuYm5tDJBJBKpXS2w8wDAMej2fa6/UOBIPBb/R+qUoKQlJI3hMRv97LMk0Ti4uLmJ2dRSwW09sPEBF4vd5ph8Nxub29/bbe36+SgiCzIt+KyDm9Xsja2hrm5+exsLCQexAUIyIIBAJfhcPh13t7e/deUk3JQUieJfm1iHj0XjGmaWJpaQmRSASrq6t6+z4ulysqIue6u7t/1Xu7KTkIMmGCAD4GENR7e0kkElheXsbKygqi0SiUUvoQ2Gy2tM/ne7Wzs3NE7xVTVhBkwthJXgRwCcBZESn8lbAL0zQRi8UQjUYRj8eRTCaxtbUFAKivr0+0tLR0NTU13dHnFVJ2kHxKqTMAXhCREMkQgGYROfCxSf4hIhdF5Du9pzvwyQoh+TjJ0wCeQCrVsrl498LRJ5unSQYA+AF4RKROn1cIyQSAq4ZhfKT38lUlSL7b/f0ut/3vL1qvXX85WyPpJHkSwLGdYI/u/PcB8OT9/ABOAAgAGALwlmEY9+4/Q42MDQ7afxvou6XXS0HSTzKolHpW79XUQYPsR8lPmvKw+BdlhdQkCIGHI4gAdr1WaVUPQkAA+e8H+aWnp+ohUIsg20eOPBxBjHR6X2/wg6r4m/33gb4XTfC0gEchRsIGJpSJ51vfu9Gjj62kiq+IAq8akA8FxrtCfKAon0DkNX1cpVU8iM2GKyR+zK8RcI0NDlb1Xqn41sqaeKfvjCicJ9AqQmm9duOCPsZisVj+v/4BaMG8nySMeloAAAAASUVORK5CYII="
+				}
+			}
+		},
 		"fonts": {
 			"HzDisplay": {
 				"font-name": "Arial",
@@ -91,13 +99,14 @@
 			"UIEditController": {
 				"EditViewScale": "1",
 				"EditorSize": "0, 0, 484.8, 634.4",
+				"EncodeBitmaps": "true",
 				"SplitViewSize_0_0": "0.705128205128205176599465175968362018466",
 				"SplitViewSize_0_1": "0.2629848783694937464083807299175532534719",
 				"SplitViewSize_1_0": "0.4832347140039447985770948434947058558464",
 				"SplitViewSize_1_1": "0.5095332018408941232578968083544168621302",
 				"SplitViewSize_2_0": "0.6476897689768976729141058967798016965389",
 				"SplitViewSize_2_1": "0.342409240924092417301949353714007884264",
-				"TabSwitchValue": "6",
+				"TabSwitchValue": "4",
 				"Version": "1"
 			},
 			"UIAttributesController": {},
@@ -114,6 +123,9 @@
 				"SelectedRow": "-1"
 			},
 			"UIGradientsDataSource": {
+				"SelectedRow": "0"
+			},
+			"UIBitmapsDataSource": {
 				"SelectedRow": "0"
 			}
 		},
@@ -576,6 +588,19 @@
 							"value-precision": "2",
 							"wants-focus": "false",
 							"wheel-inc-value": "0.1"
+						}
+					},
+					"CView": {
+						"attributes": {
+							"autosize": "left right top bottom ",
+							"bitmap": "gulllogo",
+							"class": "CView",
+							"mouse-enabled": "false",
+							"opacity": "1",
+							"origin": "255, -5",
+							"size": "45, 50",
+							"transparent": "true",
+							"wants-focus": "false"
 						}
 					}
 				}
