@@ -1,7 +1,7 @@
 <h1><strong>Circulate</strong></h1>
 <p>Circulate is an audio effect which uses banks of allpass filters to create phase smearing effects. The allpass filters, while leaving the frequency spectrum untouched, cause selective phase offsets around the chosen center frequency. These offsets present themselves as hollow and metallic short reverberation-like effects, useful for adding a dynamic metallic character to sounds. The effect is most pronounced on transient material, such as bass stabs, drum hits and plucks.</p>
-<p>&nbsp;</p>
-<img width="304" height="160" alt="XXXXXXXX_snapshot_2 0x" src="https://github.com/user-attachments/assets/c7016aa4-c912-46bc-a521-47cd146c17d5" />
+<img width="304" height="160" alt="XXXXXXXX_snapshot_2 0x" src="https://github.com/user-attachments/assets/96391b19-d53a-4ee0-862d-1b73a4f4b755" />
+
 <h3>Download</h3>
 https://github.com/GullDSP/Circulate/releases
 <h3>Demo</h3>
@@ -21,7 +21,8 @@ www.youtube.com/watch?v=tcsrC33vn1s&t=1s
 <li><strong>Focus</strong> - The Q factor, or 'Resonance' of the allpass filters. Lower Q values spread the phase smearing over a wider range, higher values focus the smearing tighter around the center.</li>
 <li><strong>Depth</strong> - Sets the number of allpass filters in the filter bank, up to a maximum of 64.</li>
 <li><strong>Feed</strong> - Feedback is introduced into the filter bank, this *will* lead to frequency spectrum changes, through cancelling or boosting affected frequencies.</li>
-<img width="304" height="160" alt="XXXXXXXX_snapshot_2 0x" src="https://github.com/user-attachments/assets/c2d43bf0-cc44-4c3a-83eb-300a56d641fe" />
+<img width="304" height="160" alt="XXXXXXXX_snapshot_2 0x" src="https://github.com/user-attachments/assets/06dc1bc1-78b6-4a04-af34-362a898c6fbf" />
+
 <h3>Version</h3>
  - v1.0.5 fixes parameter issues with FLStudio 
 <h3>Acknowledgements</h3>
