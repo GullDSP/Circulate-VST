@@ -193,18 +193,32 @@ tresult PLUGIN_API CirculateProcessor::setupProcessing (Vst::ProcessSetup& newSe
 	AudioEffect[0].setSampleRateBlockSize(Setup);
 	AudioEffect[1].setSampleRateBlockSize(Setup);
 
-	// Initialise Defaults
-	if (!Params) {
-		Params = new CIRCULATE_PARAMS::AudioEffectParameters(newSetup.maxSamplesPerBlock, newSetup.sampleRate);
 
-		Params->Depth.fillWith(DEFAULT_DEPTH);
-		Params->Center.fillWith(DEFAULT_CENTER);
-		Params->Note.fillWith(DEFAULT_NOTE);
-		Params->Focus.fillWith(DEFAULT_FOCUS);
-		Params->CenterType.fillWith(DEFAULT_SWITCH);
-		Params->NoteOffset.fillWith(DEFAULT_OFFSET);
-		Params->Feedback.fillWith(DEFAULT_FEED);
+	// Setup can be called multiple times without calling processors destructor.
+	// If so, delete the old one
+
+	if (Params)
+	{
+		delete Params;
+		Params = nullptr;
 	}
+
+
+
+
+	// Create Parameter handler and Initialise Defaults
+
+	Params = new CIRCULATE_PARAMS::AudioEffectParameters(newSetup.maxSamplesPerBlock, newSetup.sampleRate);
+
+	Params->Depth.fillWith(DEFAULT_DEPTH);
+	Params->Center.fillWith(DEFAULT_CENTER);
+	Params->Note.fillWith(DEFAULT_NOTE);
+	Params->Focus.fillWith(DEFAULT_FOCUS);
+	Params->CenterType.fillWith(DEFAULT_SWITCH);
+	Params->NoteOffset.fillWith(DEFAULT_OFFSET);
+	Params->Feedback.fillWith(DEFAULT_FEED);
+	
+
 
 
 	// Send pointer to params to effect

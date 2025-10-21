@@ -213,6 +213,8 @@ namespace CIRCULATE_PARAMS {
 			lastExplicit = value;
 		}
 		void setCurrentBlockSize(int newSize) {
+
+
 			currentBlockSize = newSize;
 
 			if (newSize == 0) {

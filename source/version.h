@@ -15,6 +15,6 @@
 #else
 #define stringFileDescription	"Circulate VST3"
 #endif
-#define stringCompanyName		"13Sounds\0"
+#define stringCompanyName		"GullDSP\0"
 #define stringLegalCopyright	"Copyright(c) 2025 Anis Dadou."
 #define stringLegalTrademarks	"VST is a trademark of Steinberg Media Technologies GmbH"
