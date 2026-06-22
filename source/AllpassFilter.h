@@ -41,19 +41,19 @@ public:
 	void setSampleRateBlockSize(HELPERS::SetupInfo Setup) {
 		sampleRate = Setup.sampleRate;
 	}
-	/// <summary>
-	/// Get a block of samples unsmoothed
-	/// </summary>
-	/// <param name="inBuffer"></param>
-	/// <param name="outBuffer"></param>
-	/// <param name="Info"></param>
-	void getBlock(float* inBuffer, float* outBuffer, HELPERS::ProcessInfo Info) {
+	///// <summary>
+	///// Get a block of samples unsmoothed
+	///// </summary>
+	///// <param name="inBuffer"></param>
+	///// <param name="outBuffer"></param>
+	///// <param name="Info"></param>
+	//void getBlock(float* inBuffer, float* outBuffer, HELPERS::ProcessInfo Info) {
 
-		for (int i = 0; i < Info.numSamples; i++) {
-			int index = i + Info.startIndex;
-			outBuffer[index] = getNext(inBuffer[index]);
-		}
-	}
+	//	for (int i = 0; i < Info.numSamples; i++) {
+	//		int index = i + Info.startIndex;
+	//		outBuffer[index] = getNext(inBuffer[index]);
+	//	}
+	//}
 
 	/// <summary>
 	/// A static helper function to calculate coefficients and store them
@@ -63,7 +63,7 @@ public:
 	/// <param name="freqHz"></param>
 	/// <param name="q"> Normalised 0 to 1, internally clamped</param>
 
-	static void calculateCoefficients(double freq_hz, double q, int sample_rate, AllpassInfo& State) {
+	inline static void calculateCoefficients(double freq_hz, double q, int sample_rate, AllpassInfo& State) {
 		
 		double q_actual = 0.5 + (q * 6.0);
 
@@ -107,10 +107,10 @@ public:
 	/// </summary>
 	/// <param name="x"></param>
 	/// <returns></returns>
-	float getNext(float x) {
+	inline float getNext(float x, float offset_mult) {
 		assert(State);
 
-		double g = State->g;
+		double g = State->g * offset_mult;
 		double R = State->k;
 		double d = 1.0 / (1.0 + 2 * R * g + pow(g, 2.0));
 		double BP = (g * (x - s2) + s1) * d;

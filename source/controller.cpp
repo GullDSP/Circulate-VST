@@ -6,6 +6,7 @@
 #include "cids.h"
 #include "vstgui/plugin-bindings/vst3editor.h"
 #include "base/source/fstreamer.h"
+#include "CustomEditor.h"
 
 using namespace Steinberg;
 
@@ -102,7 +103,7 @@ IPlugView* PLUGIN_API CirculateController::createView (FIDString name)
 	if (FIDStringsEqual (name, Vst::ViewType::kEditor))
 	{
 		// create your editor here and return a IPlugView ptr of it
-		auto* view = new VSTGUI::VST3Editor (this, "view", "editor.uidesc");
+		auto* view = new CustomEditor (this, "view", "editor.uidesc");
 		return view;
 	}
 	return nullptr;

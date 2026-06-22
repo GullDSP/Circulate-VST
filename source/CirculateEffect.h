@@ -32,7 +32,7 @@ public:
 		// This independent smoother smooths the result of the 
 		// note control after converting to Hz (not the note number)
 		NoteControlSmoother.setSmoothTime(25, Setup.sampleRate);
-
+		SpreadControlSmoother.setSmoothTime(25, Setup.sampleRate);
 		// Calculate max Hz for center frequency
 		// Defaulted to 18KHz, cut down for unusually low sample rates
 		double nyQuist = (Setup.sampleRate / 2.0f);
@@ -118,10 +118,14 @@ public:
 			currentSample *= sqrtf(1.0f - (abs(feedback) / 1.5f)   );
 
 
+			float spread_now = pParams->Spread.getSampleAccurateValue(s);
+			spread_now = SpreadControlSmoother.getSmoothedValue(spread_now);
+			float offset_mult = 1.0f;
+			float offset_fact = 0.03 + (spread_now * 0.27f); // amount added each stage
 			for (int i = 0; i < mNumActiveStages; i++) {
 				// Apply each allpass
-				currentSample = AP[i].getNext(currentSample);
-
+				currentSample = AP[i].getNext(currentSample, offset_mult);
+				offset_mult += offset_fact;
 			}
 
 			// Safety limiter, kicks in only above threshold (abs > 0.99)
@@ -156,6 +160,7 @@ private:
 	float currentSample = 0;
 
 	HELPERS::ValueSmoother NoteControlSmoother;
+	HELPERS::ValueSmoother SpreadControlSmoother;
 
 	/// <summary>
 	/// Fetches current frequency parameters for this sample, determines whether Hz or note is
