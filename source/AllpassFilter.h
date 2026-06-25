@@ -112,7 +112,7 @@ public:
 
 		double g = State->g * offset_mult;
 		double R = State->k;
-		double d = 1.0 / (1.0 + 2 * R * g + pow(g, 2.0));
+		double d = 1.0 / (1.0 + 2 * R * g + (g * g));
 		double BP = (g * (x - s2) + s1) * d;
 		
 		// Store old states

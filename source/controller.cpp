@@ -4,9 +4,11 @@
 
 #include "controller.h"
 #include "cids.h"
-#include "vstgui/plugin-bindings/vst3editor.h"
 #include "base/source/fstreamer.h"
 #include "CustomEditor.h"
+
+#define MAX_ZOOM_FACTOR_LIMIT 16
+#define MIN_ZOOM_FACTOR_LIMIT 0.1
 
 using namespace Steinberg;
 
@@ -31,7 +33,7 @@ tresult PLUGIN_API CirculateController::initialize (FUnknown* context)
 	CIRCULATE_PARAMS::registerParameters(parameters);
 
 	setKnobMode(Steinberg::Vst::KnobModes::kLinearMode);
-
+	
 	return result;
 }
 
@@ -54,7 +56,7 @@ tresult PLUGIN_API CirculateController::setComponentState (IBStream* state)
 	IBStreamer streamer(state, kLittleEndian);
 	
 
-	double depth, center, note, focus, type, offset, bypass, feed;
+	double depth, center, note, focus, type, offset, bypass, feed, spread;
 
 	// Read values in the SAME ORDER the processor wrote them
 	if (streamer.readDouble(depth) == false) return kResultFalse;
@@ -65,6 +67,7 @@ tresult PLUGIN_API CirculateController::setComponentState (IBStream* state)
 	if (streamer.readDouble(offset) == false) return kResultFalse;
 	if (streamer.readDouble(bypass) == false) return kResultFalse;
 	if (streamer.readDouble(feed) == false) return kResultFalse;
+	if (streamer.readDouble(spread) == false) spread = 0.0; // if old preset set spread to zero
 	
 	// Update the controller's parameter objects.
 	setParamNormalized(CIRCULATE_PARAMS::kDepth, depth);
@@ -75,6 +78,7 @@ tresult PLUGIN_API CirculateController::setComponentState (IBStream* state)
 	setParamNormalized(CIRCULATE_PARAMS::kNoteOffset, offset);
 	setParamNormalized(CIRCULATE_PARAMS::kBypass, bypass);
 	setParamNormalized(CIRCULATE_PARAMS::kFeed, feed);
+	setParamNormalized(CIRCULATE_PARAMS::kSpread, spread);
 
 	return kResultOk;
 }
@@ -82,7 +86,26 @@ tresult PLUGIN_API CirculateController::setComponentState (IBStream* state)
 //------------------------------------------------------------------------
 tresult PLUGIN_API CirculateController::setState (IBStream* state)
 {
-	// Here you get the state of the controller
+	if (state) {
+		Steinberg::IBStreamer streamer(state, kLittleEndian);
+		int id = -1;
+		double value = 0;
+		if (streamer.readInt32(id) && streamer.readDouble(value)) {
+
+			if (id == kZoomFactorID) {
+
+				if ((value > MIN_ZOOM_FACTOR_LIMIT) && (value < MAX_ZOOM_FACTOR_LIMIT)) {
+					currentZoomFactor = value;
+					if (currentEditor) 	currentEditor->setZoomFactor(currentZoomFactor);
+
+				}
+
+			}
+
+		}
+
+
+	}
 
 	return kResultTrue;
 }
@@ -90,8 +113,22 @@ tresult PLUGIN_API CirculateController::setState (IBStream* state)
 //------------------------------------------------------------------------
 tresult PLUGIN_API CirculateController::getState (IBStream* state)
 {
-	// Here you are asked to deliver the state of the controller (if needed)
-	// Note: the real state of your plug-in is saved in the processor
+	if (state) {
+
+		currentZoomFactor = 1.0f;
+		if (currentEditor) {
+
+			if (currentEditor = static_cast<CustomEditor*>(currentEditor)) {
+				currentZoomFactor = currentEditor->getZoomFactor();
+
+			};
+		}
+
+		Steinberg::IBStreamer streamer(state, kLittleEndian);
+		streamer.writeInt32(kZoomFactorID);
+		streamer.writeDouble(currentZoomFactor);
+
+	}
 
 	return kResultTrue;
 }

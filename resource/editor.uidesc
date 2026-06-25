@@ -3,14 +3,14 @@
 		"version": "1",
 		"bitmaps": {
 			"logo": {
-				"path": "C:\\Users\\anees\\Pictures\\SpringTailLogos\\logo.png",
+				"path": "",
 				"data": {
 					"encoding": "base64",
 					"data": "iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAAXEAAAFxAbuK4fQAAATlSURBVGhD7ZhfbFNlGMaf95R1SzttOygkLoSBYNRo2ALJ1GiiGNMMSRY1FhOMwUQz16gX4hAvhGDUC5ddqIF54Z8rvdD4h2hm4pUkkkzGYFsGEsN2FoRlwBqhbG2Bnvfxoht0H4N2cFrGsl9y0uR53jf9nr7n5PtOgXnmmWeeeW4BYgr5IPkoyQiAewH4AIwC+MqyrL1m7axEVZer6q+q6tBAVcdUdb3ZM+tQ1WWqeswMkIuq7jf7Zh2q+kPuog8cOMC2tjamUqncII6qrjJ7Zw2qereqXlkxyVgsRgDs7OzMlamqD5n9pUL4U30N4YkKUWWaAMCVL6yUB994Llc7fvw4enp6sGHDBliWla0jUyJSLSL/5daWCtEfHxkQyArTuMxdjwP1H5jqVZD8zbKsW/bAW6B8BuHLJBsBPEYHD0BkLUTWEozQybxHUs3GXEimALSaeikpaB9R1YMiUmfqAOA4TvrIkSODZ8+e7XEcp+v06dN7Nm7caJt1xabQIA8D+F5EqnP1kZER9Pf3Ix6P58rweDyXKisrh8rLy/em0+kvGxoa/hIRTilymYKCIBvmIwBbRcQzqXV0dOD8+fNTC6fB6/VeDAQCvT6f75u+vr7dTU1Nl8yam6WgIKr6LoAPRWRKfW9vL44ePZor5aWsrMwJBoN/BwKBz9esWbPbrUnlDaKqSwEcFpE7pvHQ3d0N27ZBznw9fr8/vXDhwt99Pl9LbW3tP6Y/E/IGIbkZwNemnsv4+DgGBgZg2zbS6bRp50VEGA6H+0OhUHNdXd0+0y+EvEFUNSYiu0x9OlQVJ0+exMDAAE6dOmXaebEsC6FQqFdVX4xEIv2mfz0KCdIgIh2mno9EIoHBwUEMDQ3hwoULpn1dRITBYPCXc+fObYpGo2OmPx15g5AsI3lYRG7oQDg5Jdu2MTIyMqNnyev1jns8nk2NjY17TM8kbxBc2Ud+FpHFpjcTkskkbNuGbdsYHx837WkREfj9/i+6urqadu7cec0TRkFBkJ1MLcl2EbnpEy5JjI6OYnh4GCdOnMDYWP67p7Ky8s9kMvlkNBq9aHqYSRBkF1BB8lUAr4vIPaZ/oyQSCZw5cwajo6OIx+PX3GRDodD+SCRSb+qYaZBJJp6bZwE8A2CdiITNmpshk8kgmUwilUohlUrBcRx4vV4AYDgc/qSiomKLiEy5zW4oSC6qWg7gKQD1AFZPXEvNU4CbkPwOwCuWZV0eXVG+TFWXAbgfQA2AmtTwv+sX+PxVZcGqNIAlIuI3e2YKyX0ANluWdQzFCmJyqOW1dwDx17W2bye5gOQyANUAFgNYJCJBklUAggBCE1dg4rMKQHC6CZMcBtBiWda3V5nFoOft5rcoCNa1tm83vUIgGSS5PCfYkomreuKz0+wpCj1bYm8eaml+39TdJPvPQbERuP7+YVKSIAQypuY2JQkCi3MkiLrzFng9ShMEKDMFtylJEAEWmJrblCQIOEcmAuHcmAiFc2QilNtzIv07nvf2bWsOcccOCwAExQ/i6qHxUEvsUyFegiCA7I5OAeIgxsTib6s/bo+ZPW7h6kSEGJ4MgeyvJAAWQVBDlaenVruLq0EyiUwbgF0AHNOjoMLU3MTVW2uSgy1NqwTWJlDWiXA1IHcC/KO2tf0Js/a2gYD0bWte0b21+T7Tm2ca/gfQfFfUGSnLGwAAAABJRU5ErkJggg=="
 				}
 			},
 			"logo#2x": {
-				"path": "C:\\Users\\anees\\Pictures\\SpringTailLogos\\logo#2x.png",
+				"path": "",
 				"scale-factor": "2",
 				"data": {
 					"encoding": "base64",
@@ -18,7 +18,7 @@
 				}
 			},
 			"logo#3x": {
-				"path": "C:\\Users\\anees\\Pictures\\SpringTailLogos\\logo#3x.png",
+				"path": "",
 				"scale-factor": "3",
 				"data": {
 					"encoding": "base64",
@@ -26,7 +26,7 @@
 				}
 			},
 			"logo#4x": {
-				"path": "C:\\Users\\anees\\Pictures\\SpringTailLogos\\logo#4x.png",
+				"path": "",
 				"scale-factor": "4",
 				"data": {
 					"encoding": "base64",
@@ -117,7 +117,7 @@
 		"custom": {
 			"FocusDrawing": {},
 			"VST3Editor": {
-				"Path": "C:/Users/anees/Documents/VST DEV/Circulate/resource/editor.uidesc"
+				"Path": ""
 			},
 			"UIGridController": {
 				"Grids": "1x 1,5x 5,10x 10,12x 12,15x 15",
@@ -128,20 +128,20 @@
 			},
 			"UIEditController": {
 				"EditViewScale": "1",
-				"EditorSize": "0, 0, 956.8, 534.4",
+				"EditorSize": "0, 0, 1218.4, 446.4",
 				"EncodeBitmaps": "true",
-				"SplitViewSize_0_0": "0.6471282454760032276652736982214264571667",
-				"SplitViewSize_0_1": "0.3147128245476003560732181085768388584256",
-				"SplitViewSize_1_0": "0.4799370574350905194194183422951027750969",
-				"SplitViewSize_1_1": "0.5114083398898505716800855225301347672939",
-				"SplitViewSize_2_0": "0.8214882943143813065489666769281029701233",
-				"SplitViewSize_2_1": "0.1734949832775919686955745646628201939166",
+				"SplitViewSize_0_0": "0.5732635585156993229816180246416479349136",
+				"SplitViewSize_0_1": "0.3805899143672692996887008121120743453503",
+				"SplitViewSize_1_0": "0.4757373929590866246108760151400929316878",
+				"SplitViewSize_1_1": "0.5137963843958135434775158500997349619865",
+				"SplitViewSize_2_0": "0.6122783978988837194634697880246676504612",
+				"SplitViewSize_2_1": "0.3841103086014444611961948794487398117781",
 				"TabSwitchValue": "6",
 				"Version": "1"
 			},
 			"UIAttributesController": {},
 			"UIViewCreatorDataSource": {
-				"SelectedRow": "8"
+				"SelectedRow": "9"
 			},
 			"UIColorsDataSource": {
 				"SelectedRow": "2"
@@ -211,22 +211,18 @@
 							"wheel-inc-value": "0.1"
 						}
 					},
-					"UIViewSwitchContainer": {
+					"CAutoAnimation": {
 						"attributes": {
-							"animation-style": "fade",
-							"animation-time": "120",
-							"animation-timing-function": "linear",
-							"background-color": "~ BlackCColor",
-							"background-color-draw-style": "filled and stroked",
-							"class": "UIViewSwitchContainer",
-							"mouse-enabled": "true",
+							"animation-time": "1",
+							"bitmap-offset": "0, 0",
+							"class": "CAutoAnimation",
+							"control-tag": "SwitchHz",
 							"opacity": "1",
 							"origin": "15, 35",
-							"size": "70, 100",
-							"template-names": "HzControl,NoteControl",
-							"template-switch-control": "SwitchHz",
-							"transparent": "true",
-							"wants-focus": "false"
+							"size": "70, 95",
+							"transparent": "false",
+							"wants-focus": "false",
+							"wheel-inc-value": "0.1"
 						}
 					},
 					"CViewContainer": {
@@ -752,19 +748,50 @@
 								}
 							}
 						}
+					},
+					"CViewContainer": {
+						"attributes": {
+							"background-color": "BG",
+							"background-color-draw-style": "filled",
+							"class": "CViewContainer",
+							"mouse-enabled": "true",
+							"opacity": "0.997143",
+							"origin": "15, 35",
+							"size": "70, 95",
+							"template": "NoteControl",
+							"transparent": "false",
+							"uidesc-label": "ui_note_control",
+							"wants-focus": "true"
+						}
+					},
+					"CViewContainer": {
+						"attributes": {
+							"background-color": "BG",
+							"background-color-draw-style": "filled and stroked",
+							"class": "CViewContainer",
+							"mouse-enabled": "true",
+							"opacity": "1",
+							"origin": "15, 35",
+							"size": "70, 95",
+							"template": "HzControl",
+							"transparent": "false",
+							"uidesc-label": "ui_hz_control",
+							"wants-focus": "false"
+						}
 					}
 				}
 			},
 			"HzControl": {
 				"attributes": {
-					"background-color": "~ BlackCColor",
+					"background-color": "BG",
 					"background-color-draw-style": "filled and stroked",
 					"class": "CViewContainer",
 					"mouse-enabled": "true",
 					"opacity": "1",
 					"origin": "0, 0",
-					"size": "70, 100",
-					"transparent": "true",
+					"size": "70, 95",
+					"transparent": "false",
+					"uidesc-label": "ui_hz_control",
 					"wants-focus": "false"
 				},
 				"children": {
@@ -832,7 +859,7 @@
 							"title": "Center",
 							"transparent": "false",
 							"value-precision": "2",
-							"wants-focus": "false",
+							"wants-focus": "true",
 							"wheel-inc-value": "0.1"
 						}
 					},
@@ -868,7 +895,7 @@
 							"text-shadow-offset": "1, 1",
 							"transparent": "false",
 							"value-precision": "2",
-							"wants-focus": "false",
+							"wants-focus": "true",
 							"wheel-inc-value": "0.1"
 						}
 					},
@@ -909,15 +936,16 @@
 			},
 			"NoteControl": {
 				"attributes": {
-					"background-color": "~ BlackCColor",
-					"background-color-draw-style": "filled and stroked",
+					"background-color": "BG",
+					"background-color-draw-style": "filled",
 					"class": "CViewContainer",
 					"mouse-enabled": "true",
-					"opacity": "1",
+					"opacity": "0.997143",
 					"origin": "0, 0",
-					"size": "70, 100",
-					"transparent": "true",
-					"wants-focus": "false"
+					"size": "70, 95",
+					"transparent": "false",
+					"uidesc-label": "ui_note_control",
+					"wants-focus": "true"
 				},
 				"children": {
 					"CParamDisplay": {
@@ -950,7 +978,7 @@
 							"transparent": "false",
 							"uidesc-label": "Fine display",
 							"value-precision": "2",
-							"wants-focus": "false",
+							"wants-focus": "true",
 							"wheel-inc-value": "0.1"
 						}
 					},
@@ -984,7 +1012,7 @@
 							"transparent": "false",
 							"uidesc-label": "Note Display",
 							"value-precision": "2",
-							"wants-focus": "false",
+							"wants-focus": "true",
 							"wheel-inc-value": "0.1"
 						}
 					},
@@ -1055,7 +1083,7 @@
 							"transparent": "false",
 							"uidesc-label": "Title",
 							"value-precision": "2",
-							"wants-focus": "false",
+							"wants-focus": "true",
 							"wheel-inc-value": "0.1"
 						}
 					},
@@ -1126,7 +1154,7 @@
 							"transparent": "false",
 							"uidesc-label": "Fine Label",
 							"value-precision": "2",
-							"wants-focus": "false",
+							"wants-focus": "true",
 							"wheel-inc-value": "0.1"
 						}
 					},
@@ -1164,7 +1192,7 @@
 							"transparent": "false",
 							"uidesc-label": "Putch Label",
 							"value-precision": "2",
-							"wants-focus": "false",
+							"wants-focus": "true",
 							"wheel-inc-value": "0.1"
 						}
 					}

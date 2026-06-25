@@ -60,7 +60,10 @@ namespace CIRCULATE_PARAMS {
 		kNoteOffset,
 		kBypass,
 		kFeed,
-		kSpread
+		kSpread,
+
+		kSTSelector,
+		kHzSelector
 		
 	};
 

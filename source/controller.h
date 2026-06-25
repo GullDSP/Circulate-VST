@@ -6,7 +6,7 @@
 
 #include "public.sdk/source/vst/vsteditcontroller.h"
 #include "CirculateParameters.h"
-
+#include "vstgui/plugin-bindings/vst3editor.h"
 
 
 namespace CirculateVST {
@@ -56,7 +56,10 @@ public:
 
 //------------------------------------------------------------------------
 protected:
+	float currentZoomFactor = 1.0;
+	const int kZoomFactorID = 201;
 
+	VSTGUI::VST3Editor* currentEditor = nullptr;
 };
 
 //------------------------------------------------------------------------

@@ -5,6 +5,7 @@
 #include "pluginterfaces/base/ustring.h"
 #include <cstdlib>
 #include <math.h>
+#include <tchar.h>
 /// <summary>
 /// Custom override of Parameter class to allow printing of log values
 /// For pitch / center
@@ -54,6 +55,20 @@ public:
             string[i] = text[i];
             if (text[i] == '\0') break;
         }
+    }
+
+    bool fromString(const Steinberg::Vst::TChar* string, Steinberg::Vst::ParamValue& valueNormalized) const override {
+
+        const char16_t* endptr = nullptr;
+
+        const wchar_t* win32String = reinterpret_cast<const wchar_t*>(string);
+
+        float value = wcstof(win32String, nullptr);
+        if (endptr == string) return false;
+
+        valueNormalized = toNormalized(value);
+        
+        return true;
     }
 
 private:
