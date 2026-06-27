@@ -28,8 +28,11 @@ www.youtube.com/watch?v=tcsrC33vn1s&t=1s
 
 <h3>Version</h3>
  - v1.0.5 fixes parameter issues with FLStudio 
+ - v1.0.6 fixes buffer size issue with Sonar 
 <h3>Acknowledgements</h3>
 <ul>
 <li>This project is built using the Steinberg VST 3 SDK(https://www.steinberg.net/developers/).</li>
 <li>VST is a trademark of Steinberg Media Technologies GmbH.</li>
+<img width="200" height="187" alt="XXXXXXXX_snapshot_2 0x" src="https://steinbergmedia.github.io/vst3_dev_portal/resources/licensing_3.png" />
+
 </ul>
