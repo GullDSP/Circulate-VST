@@ -31,6 +31,21 @@ public:
 		return currentZoomFactor;
 	}
 
+	void setSwitchToHz() {
+		switchIsHz = true;
+		if (haveRqdPointers) {
+			pHzContainer->setVisible(true);
+			pNoteContainer->setVisible(false);
+		}
+	}
+	void setSwitchToNote() {
+		switchIsHz = false;
+		if (haveRqdPointers) {
+			pHzContainer->setVisible(false);
+			pNoteContainer->setVisible(true);
+		}
+	}
+
 	void close() override {
 
 		pNoteContainer = nullptr;
@@ -61,6 +76,8 @@ public:
 
 	}
 
+
+
 	VSTGUI::CView* verifyView(VSTGUI::CView* view, const VSTGUI::UIAttributes& attributes, const VSTGUI::IUIDescription* description) override {
 	
 
@@ -69,10 +86,12 @@ public:
 			if (*name == "HzControl")
 			{
 				pHzContainer = dynamic_cast<VSTGUI::CViewContainer*> (view);
+				if (pHzContainer) pHzContainer->setVisible(switchIsHz);
 			}
 			else if (*name == "NoteControl")
 			{
 				pNoteContainer = dynamic_cast<VSTGUI::CViewContainer*> (view);
+				if (pNoteContainer) pNoteContainer->setVisible(!switchIsHz);
 			}
 		}
 

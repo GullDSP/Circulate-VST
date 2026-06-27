@@ -78,6 +78,20 @@ tresult PLUGIN_API CirculateController::setComponentState (IBStream* state)
 	setParamNormalized(CIRCULATE_PARAMS::kBypass, bypass);
 	setParamNormalized(CIRCULATE_PARAMS::kFeed, feed);
 
+	if (!currentEditor) return kResultOk;
+
+	auto* editor = dynamic_cast<CustomEditor*>(currentEditor);
+
+	// Update UI with type used upon preset creation
+	if (type > 0.5f) {
+		editor->setSwitchToNote();
+
+	}
+	else {
+		editor->setSwitchToHz();
+	}
+
+
 	return kResultOk;
 }
 
@@ -137,8 +151,19 @@ IPlugView* PLUGIN_API CirculateController::createView (FIDString name)
 	// Here the Host wants to open your editor (if you have one)
 	if (FIDStringsEqual (name, Vst::ViewType::kEditor))
 	{
-		// create your editor here and return a IPlugView ptr of it
+	
 		currentEditor = new CustomEditor (this, "view", "editor.uidesc");
+
+
+		// If preset loaded when UI was closed then load the correct center page
+		auto* customEditor = static_cast<CustomEditor*>(currentEditor);
+		if (getParamNormalized(CIRCULATE_PARAMS::kSetSwitch) > 0.5) {
+			customEditor->setSwitchToNote();
+		}
+		else {
+			customEditor->setSwitchToHz();
+		}
+
 		return currentEditor;
 	}
 	return nullptr;
