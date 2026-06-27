@@ -107,10 +107,10 @@ public:
 	/// </summary>
 	/// <param name="x"></param>
 	/// <returns></returns>
-	inline float getNext(float x, float offset_mult) {
+	inline float getNext(float x) {
 		assert(State);
 
-		double g = State->g * offset_mult;
+		double g = State->g;
 		double R = State->k;
 		double d = 1.0 / (1.0 + 2 * R * g + (g * g));
 		double BP = (g * (x - s2) + s1) * d;

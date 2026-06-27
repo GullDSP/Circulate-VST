@@ -39,6 +39,8 @@ public:
 		maxAllowedFreq = MAX_FREQ_HZ;
 		if (nyQuist < MAX_FREQ_HZ) maxAllowedFreq = nyQuist - 500.0f;
 
+		mPreviousActiveStages = mNumActiveStages;
+
 	}
 	/// <summary>
 	/// Set pointer used to access host/plugin parameters
@@ -78,8 +80,16 @@ public:
 		for (int s = 0; s < numSamples; s++) {
 
 			// Get num stages (+0.5 for crude rounding)
+			mPreviousActiveStages = mNumActiveStages;
 			mNumActiveStages = static_cast<int>(pParams->Depth.getSampleAccurateValue(s) * MAX_NUM_STAGES + 0.5);
-			
+			// if we've added more stages, clear the state of those new filters.
+			if (mNumActiveStages > mPreviousActiveStages) {
+				
+				for (int f = mPreviousActiveStages; f < mNumActiveStages; f++) {
+					AP[f].resetState();
+				}
+			}
+
 			// Get Frequency
 			mCenterHz = updateFrequency(s);
 		
@@ -116,17 +126,13 @@ public:
 			// Gain compensation
 			currentSample *= sqrtf(1.0f - (abs(feedback) / 1.5f)   );
 
-			float spread_now = pParams->Spread.getSampleAccurateValue(s);
-			spread_now = spread_now * spread_now;
-			float offset_fact = 0.0;
-			float sign = 1.0;
+			
 			for (int i = 0; i < mNumActiveStages; i++) {
 				// Apply each allpass
-				float current_scale = (i + 1.0f) / MAX_NUM_STAGES;
 
-				currentSample = AP[i].getNext(currentSample, 1.0 + (offset_fact * sign) + (jitterOffsets[i] * spread_now * current_scale * 3.5));
-				offset_fact += (0.015f * spread_now);
-				sign = sign * -1.0;
+
+				currentSample = AP[i].getNext(currentSample);
+			
 			}
 
 			// Safety limiter, kicks in only above threshold (abs > 0.99)
@@ -154,7 +160,7 @@ private:
 	double mNoteNumHz		= 0;
 	double mNoteOffsetHz		= 0;
 	int	mNumActiveStages	= DEFAULT_DEPTH * MAX_NUM_STAGES;
-
+	int mPreviousActiveStages = DEFAULT_DEPTH * MAX_NUM_STAGES;
 	bool mUseHzControl	 = true;
 	double maxAllowedFreq = 0;
 	float currentSample = 0;

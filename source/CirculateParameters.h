@@ -137,7 +137,6 @@ namespace CIRCULATE_PARAMS {
 		parameters.addParameter(STR16("Bypass"), STR16(""), 1, 0, Steinberg::Vst::ParameterInfo::kIsBypass, CirculateParamIDs::kBypass);
 		parameters.addParameter(STR16("Focus"), STR16(""), 0, DEFAULT_FOCUS, flags, CirculateParamIDs::kFocus);
 		parameters.addParameter(STR16("Feedback"), STR16(""), 0, DEFAULT_FEED, flags, CirculateParamIDs::kFeed);
-		parameters.addParameter(STR16("Spread"), STR16(""), 0, DEFAULT_FEED, flags, CirculateParamIDs::kSpread);
 
 	}
 	/// <summary>
@@ -258,8 +257,7 @@ namespace CIRCULATE_PARAMS {
 			CenterType(kSetSwitch, DEFAULT_SWITCH, true, blockSize),
 			NoteOffset(kNoteOffset, DEFAULT_OFFSET, true, blockSize),
 
-			Feedback(kFeed, 0.5, true, blockSize),
-		Spread(kSpread, 0.5, true, blockSize)
+			Feedback(kFeed, 0.5, true, blockSize)
 
 		{
 			blockSize = blockSize;
@@ -271,7 +269,6 @@ namespace CIRCULATE_PARAMS {
 			ParameterList.push_back(&CenterType);
 			ParameterList.push_back(&NoteOffset);
 			ParameterList.push_back(&Feedback);
-			ParameterList.push_back(&Spread);
 			// Initialise smooth times. 20ms ~ (50Hz)
 			Center.setSmoothTime(20, sampleRate);
 			Focus.setSmoothTime(20, sampleRate);
@@ -279,7 +276,7 @@ namespace CIRCULATE_PARAMS {
 			Feedback.setSmoothTime(10, sampleRate);
 
 			// Disable smoothing on discrete parameters
-			Depth.setSmoothTime(30, sampleRate);
+			Depth.setSmoothTime(0, sampleRate);
 			CenterType.setSmoothTime(0, sampleRate);
 			Note.setSmoothTime(0, sampleRate); // Note is smoothed after conversion to Hz in main loop
 		}
@@ -379,7 +376,6 @@ namespace CIRCULATE_PARAMS {
 		ParamUnit CenterType;
 		ParamUnit NoteOffset;
 		ParamUnit Feedback;
-		ParamUnit Spread;
 		std::vector<ParamUnit*> ParameterList;
 
 		int blockSize = 0;

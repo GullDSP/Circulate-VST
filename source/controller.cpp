@@ -56,7 +56,7 @@ tresult PLUGIN_API CirculateController::setComponentState (IBStream* state)
 	IBStreamer streamer(state, kLittleEndian);
 	
 
-	double depth, center, note, focus, type, offset, bypass, feed, spread;
+	double depth, center, note, focus, type, offset, bypass, feed;
 
 	// Read values in the SAME ORDER the processor wrote them
 	if (streamer.readDouble(depth) == false) return kResultFalse;
@@ -67,7 +67,6 @@ tresult PLUGIN_API CirculateController::setComponentState (IBStream* state)
 	if (streamer.readDouble(offset) == false) return kResultFalse;
 	if (streamer.readDouble(bypass) == false) return kResultFalse;
 	if (streamer.readDouble(feed) == false) return kResultFalse;
-	if (streamer.readDouble(spread) == false) spread = 0.0; // if old preset set spread to zero
 	
 	// Update the controller's parameter objects.
 	setParamNormalized(CIRCULATE_PARAMS::kDepth, depth);
@@ -78,7 +77,6 @@ tresult PLUGIN_API CirculateController::setComponentState (IBStream* state)
 	setParamNormalized(CIRCULATE_PARAMS::kNoteOffset, offset);
 	setParamNormalized(CIRCULATE_PARAMS::kBypass, bypass);
 	setParamNormalized(CIRCULATE_PARAMS::kFeed, feed);
-	setParamNormalized(CIRCULATE_PARAMS::kSpread, spread);
 
 	return kResultOk;
 }

@@ -252,7 +252,7 @@ tresult PLUGIN_API CirculateProcessor::setState (IBStream* state)
 	IBStreamer streamer (state, kLittleEndian);
 	
 
-	double depth, center, note, focus, type, offset, bypass, feed, spread;
+	double depth, center, note, focus, type, offset, bypass, feed;
 
 	// Same order they were written in getState
 	if (streamer.readDouble(depth) == false) return kResultFalse;
@@ -263,8 +263,6 @@ tresult PLUGIN_API CirculateProcessor::setState (IBStream* state)
 	if (streamer.readDouble(offset) == false) return kResultFalse;
 	if (streamer.readDouble(bypass) == false) return kResultFalse;
 	if (streamer.readDouble(feed) == false) return kResultFalse;
-	if (streamer.readDouble(spread) == false) spread = 0.0; // If loading from an older preset, set spread to zero to preserve sound
-
 	// Fill sample accurate parameter buffers with loaded value
 	Params->Depth.fillWith(depth);
 	Params->Center.fillWith(center);
@@ -273,7 +271,6 @@ tresult PLUGIN_API CirculateProcessor::setState (IBStream* state)
 	Params->CenterType.fillWith(type);
 	Params->NoteOffset.fillWith(offset);
 	Params->Feedback.fillWith(feed);
-	Params->Spread.fillWith(spread);
 
 	if (bypass > 0.5) {
 		isBypassed = true;
@@ -305,7 +302,6 @@ tresult PLUGIN_API CirculateProcessor::getState (IBStream* state)
 	streamer.writeDouble(Params->NoteOffset.getLastValue());
 	streamer.writeDouble(isBypassed);
 	streamer.writeDouble(Params->Feedback.getLastValue());
-	streamer.writeDouble(Params->Spread.getLastValue());
 	return kResultOk;
 }
 

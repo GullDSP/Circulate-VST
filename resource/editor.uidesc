@@ -3,14 +3,14 @@
 		"version": "1",
 		"bitmaps": {
 			"logo": {
-				"path": "",
+				"path": "C:\\Users\\anees\\Pictures\\SpringTailLogos\\logo.png",
 				"data": {
 					"encoding": "base64",
 					"data": "iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAAXEAAAFxAbuK4fQAAATlSURBVGhD7ZhfbFNlGMaf95R1SzttOygkLoSBYNRo2ALJ1GiiGNMMSRY1FhOMwUQz16gX4hAvhGDUC5ddqIF54Z8rvdD4h2hm4pUkkkzGYFsGEsN2FoRlwBqhbG2Bnvfxoht0H4N2cFrGsl9y0uR53jf9nr7n5PtOgXnmmWeeeW4BYgr5IPkoyQiAewH4AIwC+MqyrL1m7axEVZer6q+q6tBAVcdUdb3ZM+tQ1WWqeswMkIuq7jf7Zh2q+kPuog8cOMC2tjamUqncII6qrjJ7Zw2qereqXlkxyVgsRgDs7OzMlamqD5n9pUL4U30N4YkKUWWaAMCVL6yUB994Llc7fvw4enp6sGHDBliWla0jUyJSLSL/5daWCtEfHxkQyArTuMxdjwP1H5jqVZD8zbKsW/bAW6B8BuHLJBsBPEYHD0BkLUTWEozQybxHUs3GXEimALSaeikpaB9R1YMiUmfqAOA4TvrIkSODZ8+e7XEcp+v06dN7Nm7caJt1xabQIA8D+F5EqnP1kZER9Pf3Ix6P58rweDyXKisrh8rLy/em0+kvGxoa/hIRTilymYKCIBvmIwBbRcQzqXV0dOD8+fNTC6fB6/VeDAQCvT6f75u+vr7dTU1Nl8yam6WgIKr6LoAPRWRKfW9vL44ePZor5aWsrMwJBoN/BwKBz9esWbPbrUnlDaKqSwEcFpE7pvHQ3d0N27ZBznw9fr8/vXDhwt99Pl9LbW3tP6Y/E/IGIbkZwNemnsv4+DgGBgZg2zbS6bRp50VEGA6H+0OhUHNdXd0+0y+EvEFUNSYiu0x9OlQVJ0+exMDAAE6dOmXaebEsC6FQqFdVX4xEIv2mfz0KCdIgIh2mno9EIoHBwUEMDQ3hwoULpn1dRITBYPCXc+fObYpGo2OmPx15g5AsI3lYRG7oQDg5Jdu2MTIyMqNnyev1jns8nk2NjY17TM8kbxBc2Ud+FpHFpjcTkskkbNuGbdsYHx837WkREfj9/i+6urqadu7cec0TRkFBkJ1MLcl2EbnpEy5JjI6OYnh4GCdOnMDYWP67p7Ky8s9kMvlkNBq9aHqYSRBkF1BB8lUAr4vIPaZ/oyQSCZw5cwajo6OIx+PX3GRDodD+SCRSb+qYaZBJJp6bZwE8A2CdiITNmpshk8kgmUwilUohlUrBcRx4vV4AYDgc/qSiomKLiEy5zW4oSC6qWg7gKQD1AFZPXEvNU4CbkPwOwCuWZV0eXVG+TFWXAbgfQA2AmtTwv+sX+PxVZcGqNIAlIuI3e2YKyX0ANluWdQzFCmJyqOW1dwDx17W2bye5gOQyANUAFgNYJCJBklUAggBCE1dg4rMKQHC6CZMcBtBiWda3V5nFoOft5rcoCNa1tm83vUIgGSS5PCfYkomreuKz0+wpCj1bYm8eaml+39TdJPvPQbERuP7+YVKSIAQypuY2JQkCi3MkiLrzFng9ShMEKDMFtylJEAEWmJrblCQIOEcmAuHcmAiFc2QilNtzIv07nvf2bWsOcccOCwAExQ/i6qHxUEvsUyFegiCA7I5OAeIgxsTib6s/bo+ZPW7h6kSEGJ4MgeyvJAAWQVBDlaenVruLq0EyiUwbgF0AHNOjoMLU3MTVW2uSgy1NqwTWJlDWiXA1IHcC/KO2tf0Js/a2gYD0bWte0b21+T7Tm2ca/gfQfFfUGSnLGwAAAABJRU5ErkJggg=="
 				}
 			},
 			"logo#2x": {
-				"path": "",
+				"path": "C:\\Users\\anees\\Pictures\\SpringTailLogos\\logo#2x.png",
 				"scale-factor": "2",
 				"data": {
 					"encoding": "base64",
@@ -18,7 +18,7 @@
 				}
 			},
 			"logo#3x": {
-				"path": "",
+				"path": "C:\\Users\\anees\\Pictures\\SpringTailLogos\\logo#3x.png",
 				"scale-factor": "3",
 				"data": {
 					"encoding": "base64",
@@ -26,7 +26,7 @@
 				}
 			},
 			"logo#4x": {
-				"path": "",
+				"path": "C:\\Users\\anees\\Pictures\\SpringTailLogos\\logo#4x.png",
 				"scale-factor": "4",
 				"data": {
 					"encoding": "base64",
@@ -117,7 +117,7 @@
 		"custom": {
 			"FocusDrawing": {},
 			"VST3Editor": {
-				"Path": ""
+				"Path": "C:\\Users\\anees\\Documents\\VST DEV\\Circulate\\resource\\editor.uidesc"
 			},
 			"UIGridController": {
 				"Grids": "1x 1,5x 5,10x 10,12x 12,15x 15",
@@ -128,20 +128,20 @@
 			},
 			"UIEditController": {
 				"EditViewScale": "1",
-				"EditorSize": "0, 0, 1218.4, 446.4",
+				"EditorSize": "0, 0, 1218, 617",
 				"EncodeBitmaps": "true",
-				"SplitViewSize_0_0": "0.5732635585156993229816180246416479349136",
-				"SplitViewSize_0_1": "0.3805899143672692996887008121120743453503",
-				"SplitViewSize_1_0": "0.4757373929590866246108760151400929316878",
-				"SplitViewSize_1_1": "0.5137963843958135434775158500997349619865",
-				"SplitViewSize_2_0": "0.6122783978988837194634697880246676504612",
-				"SplitViewSize_2_1": "0.3841103086014444611961948794487398117781",
-				"TabSwitchValue": "6",
+				"SplitViewSize_0_0": "0.6971235194585448935455929131421726197004",
+				"SplitViewSize_0_1": "0.2707275803722504203818743917508982121944",
+				"SplitViewSize_1_0": "0.482233502538071068244107664213515818119",
+				"SplitViewSize_1_1": "0.5093062605752961546912160883948672562838",
+				"SplitViewSize_2_0": "0.6124794745484400948498660000041127204895",
+				"SplitViewSize_2_1": "0.3842364532019704181919905749964527785778",
+				"TabSwitchValue": "4",
 				"Version": "1"
 			},
 			"UIAttributesController": {},
 			"UIViewCreatorDataSource": {
-				"SelectedRow": "9"
+				"SelectedRow": "30"
 			},
 			"UIColorsDataSource": {
 				"SelectedRow": "2"
@@ -156,7 +156,7 @@
 				"SelectedRow": "0"
 			},
 			"UIBitmapsDataSource": {
-				"SelectedRow": "0"
+				"SelectedRow": "-1"
 			}
 		},
 		"templates": {
@@ -168,7 +168,7 @@
 					"mouse-enabled": "true",
 					"opacity": "1",
 					"origin": "0, 0",
-					"size": "375, 160",
+					"size": "310, 160",
 					"transparent": "false",
 					"wants-focus": "false"
 				},
@@ -322,7 +322,7 @@
 							"icon-text-margin": "0",
 							"opacity": "1",
 							"origin": "15, 130",
-							"round-radius": "0",
+							"round-radius": "6",
 							"segment-names": "Hz,ST",
 							"selection-mode": "Single",
 							"size": "70, 25",
@@ -505,7 +505,7 @@
 							"min-value": "0",
 							"mouse-enabled": "true",
 							"opacity": "1",
-							"origin": "305, 140",
+							"origin": "245, 140",
 							"round-rect-radius": "6",
 							"shadow-color": "~ RedCColor",
 							"size": "25, 20",
@@ -535,7 +535,7 @@
 							"class": "CViewContainer",
 							"mouse-enabled": "true",
 							"opacity": "1",
-							"origin": "295, 35",
+							"origin": "225, 35",
 							"size": "70, 100",
 							"transparent": "true",
 							"uidesc-label": "Feed",
@@ -586,7 +586,7 @@
 									"circle-drawing": "false",
 									"class": "CKnob",
 									"control-tag": "Feedback",
-									"corona-color": "PR3",
+									"corona-color": "PR4",
 									"corona-dash-dot": "false",
 									"corona-dash-dot-lengths": "1.26,0.1",
 									"corona-drawing": "true",
@@ -629,10 +629,10 @@
 							"min-value": "0",
 							"mouse-enabled": "true",
 							"opacity": "1",
-							"origin": "330, 140",
+							"origin": "270, 140",
 							"round-rect-radius": "6",
 							"shadow-color": "~ RedCColor",
-							"size": "45, 20",
+							"size": "40, 20",
 							"style-3D-in": "false",
 							"style-3D-out": "false",
 							"style-no-draw": "false",
@@ -661,92 +661,6 @@
 							"size": "50, 50",
 							"transparent": "false",
 							"wants-focus": "false"
-						}
-					},
-					"CViewContainer": {
-						"attributes": {
-							"background-color": "~ BlackCColor",
-							"background-color-draw-style": "filled and stroked",
-							"class": "CViewContainer",
-							"mouse-enabled": "true",
-							"opacity": "1",
-							"origin": "225, 35",
-							"size": "70, 100",
-							"transparent": "true",
-							"uidesc-label": "Feed",
-							"wants-focus": "false"
-						},
-						"children": {
-							"CTextLabel": {
-								"attributes": {
-									"back-color": "~ TransparentCColor",
-									"background-offset": "0, 0",
-									"class": "CTextLabel",
-									"default-value": "0.5",
-									"font": "Label",
-									"font-antialias": "true",
-									"font-color": "FG",
-									"frame-color": "~ BlackCColor",
-									"frame-width": "1",
-									"max-value": "1",
-									"min-value": "0",
-									"mouse-enabled": "true",
-									"opacity": "1",
-									"origin": "0, 70",
-									"round-rect-radius": "6",
-									"shadow-color": "~ RedCColor",
-									"size": "70, 30",
-									"style-3D-in": "false",
-									"style-3D-out": "false",
-									"style-no-draw": "false",
-									"style-no-frame": "true",
-									"style-no-text": "false",
-									"style-round-rect": "false",
-									"style-shadow-text": "false",
-									"text-alignment": "center",
-									"text-inset": "0, 0",
-									"text-rotation": "0",
-									"text-shadow-offset": "1, 1",
-									"title": "Spread",
-									"transparent": "false",
-									"value-precision": "2",
-									"wants-focus": "false",
-									"wheel-inc-value": "0.1"
-								}
-							},
-							"CKnob": {
-								"attributes": {
-									"angle-range": "270",
-									"angle-start": "135",
-									"circle-drawing": "false",
-									"class": "CKnob",
-									"control-tag": "Spread",
-									"corona-color": "PR4",
-									"corona-dash-dot": "false",
-									"corona-dash-dot-lengths": "1.26,0.1",
-									"corona-drawing": "true",
-									"corona-from-center": "false",
-									"corona-inset": "12",
-									"corona-inverted": "false",
-									"corona-line-cap-butt": "false",
-									"corona-outline": "true",
-									"corona-outline-width-add": "-4",
-									"handle-color": "FG",
-									"handle-line-width": "8",
-									"handle-shadow-color": "FG",
-									"knob-range": "200",
-									"opacity": "1",
-									"origin": "0, 0",
-									"size": "70, 70",
-									"skip-handle-drawing": "false",
-									"transparent": "false",
-									"uidesc-label": "Focus Knob",
-									"value-inset": "9",
-									"wants-focus": "true",
-									"wheel-inc-value": "0.1",
-									"zoom-factor": "1.5"
-								}
-							}
 						}
 					},
 					"CViewContainer": {
