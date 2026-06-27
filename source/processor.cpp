@@ -133,10 +133,10 @@ tresult PLUGIN_API CirculateProcessor::process (Vst::ProcessData& data)
 
 
  	if (!data.numInputs) {
-		return false;
+		return kResultOk;
 	}
 	if (!data.numOutputs) {
-		return false;
+		return kResultOk;
 	}
 
 	int numChan = 0;
@@ -149,7 +149,7 @@ tresult PLUGIN_API CirculateProcessor::process (Vst::ProcessData& data)
 
 	// Return if either in or out have zero channels
 	if (numChan == 0) {
-		return false;
+		return kResultOk;
 	}
 
 	// If bypassed, copy in to out
@@ -158,10 +158,13 @@ tresult PLUGIN_API CirculateProcessor::process (Vst::ProcessData& data)
 			float* in = data.inputs[0].channelBuffers32[c];
 			float* out = data.outputs[0].channelBuffers32[c];
 
-			memcpy(out, in, sizeof(float) * data.numSamples);
+			if (in != out) {
+				memcpy(out, in, sizeof(float) * data.numSamples);
+			}
+
 
 		}
-		return false;
+		return kResultOk;
 	}
 
 	if (data.numSamples > 0)

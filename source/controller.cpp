@@ -138,8 +138,8 @@ IPlugView* PLUGIN_API CirculateController::createView (FIDString name)
 	if (FIDStringsEqual (name, Vst::ViewType::kEditor))
 	{
 		// create your editor here and return a IPlugView ptr of it
-		auto* view = new CustomEditor (this, "view", "editor.uidesc");
-		return view;
+		currentEditor = new CustomEditor (this, "view", "editor.uidesc");
+		return currentEditor;
 	}
 	return nullptr;
 }
