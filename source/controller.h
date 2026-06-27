@@ -7,6 +7,7 @@
 #include "public.sdk/source/vst/vsteditcontroller.h"
 #include "CirculateParameters.h"
 #include "vstgui/plugin-bindings/vst3editor.h"
+#include "CustomEditor.h"
 
 
 namespace CirculateVST {
@@ -14,7 +15,7 @@ namespace CirculateVST {
 //------------------------------------------------------------------------
 //  CirculateController
 //------------------------------------------------------------------------
-class CirculateController : public Steinberg::Vst::EditControllerEx1
+class CirculateController : public Steinberg::Vst::EditControllerEx1, public VSTGUI::VST3EditorDelegate
 {
 public:
 //------------------------------------------------------------------------
@@ -39,13 +40,24 @@ public:
 	Steinberg::tresult PLUGIN_API getState (Steinberg::IBStream* state) SMTG_OVERRIDE;
 
     // ... (at the end of your source/controller.cpp file) ...
-
 //------------------------------------------------------------------------
 
+		/// to track current zoom
+	void onZoomChanged(VSTGUI::VST3Editor* editor, double newZoom) override {
+		currentZoomFactor = newZoom;
 
-    //------------------------------------------------------------------------
- // namespace CirculateVST
+	};
+	
+	// called when plugin window closed
+	void willClose(VSTGUI::VST3Editor* editor) override {
+		auto custom_editor = dynamic_cast<CustomEditor*>(editor);
+		if (custom_editor) {
+			// Save the switch state before closing
+			switchIsHzState = custom_editor->isHzMode();
+		}
 
+		currentEditor = nullptr;
+	}
 
  	//---Interface---------
 	DEFINE_INTERFACES
@@ -58,6 +70,8 @@ public:
 protected:
 	float currentZoomFactor = 1.0;
 	const int kZoomFactorID = 201;
+
+	bool switchIsHzState = true;
 
 	VSTGUI::VST3Editor* currentEditor = nullptr;
 };

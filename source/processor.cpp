@@ -28,8 +28,6 @@ CirculateProcessor::~CirculateProcessor ()
 		delete Params;
 		Params = nullptr;
 	}
-
-
 }
 
 //------------------------------------------------------------------------
@@ -162,7 +160,6 @@ tresult PLUGIN_API CirculateProcessor::process (Vst::ProcessData& data)
 				memcpy(out, in, sizeof(float) * data.numSamples);
 			}
 
-
 		}
 		return kResultOk;
 	}
@@ -175,8 +172,6 @@ tresult PLUGIN_API CirculateProcessor::process (Vst::ProcessData& data)
 			float* out = data.outputs[0].channelBuffers32[c];
 
 				AudioEffect[c].getBlock(in, out, data.numSamples);
-				
-				
 
 		}
 	}
@@ -206,9 +201,6 @@ tresult PLUGIN_API CirculateProcessor::setupProcessing (Vst::ProcessSetup& newSe
 		Params = nullptr;
 	}
 
-
-
-
 	// Create Parameter handler and Initialise Defaults
 
 	Params = new CIRCULATE_PARAMS::AudioEffectParameters(newSetup.maxSamplesPerBlock, newSetup.sampleRate);
@@ -221,15 +213,9 @@ tresult PLUGIN_API CirculateProcessor::setupProcessing (Vst::ProcessSetup& newSe
 	Params->NoteOffset.fillWith(DEFAULT_OFFSET);
 	Params->Feedback.fillWith(DEFAULT_FEED);
 	
-
-
-
 	// Send pointer to params to effect
 	AudioEffect[0].getParams(Params);
 	AudioEffect[1].getParams(Params);
-
-
-
 
 	return AudioEffect::setupProcessing (newSetup);
 }
@@ -281,8 +267,6 @@ tresult PLUGIN_API CirculateProcessor::setState (IBStream* state)
 	else {
 		isBypassed = false;
 	}
-
-
 
 	return kResultOk;
 }

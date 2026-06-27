@@ -22,28 +22,14 @@ public:
 		VST3Editor::setAllowedZoomFactors(zoomFactors);
 	
 	}
-	void setZoomFactor(double factor)  {
-		currentZoomFactor = factor;
-		VST3Editor::setZoomFactor(factor);
-	}
+	
+	void setSwitchToHz(bool isHz) { switchIsHz = isHz; }
+	bool isHzMode() const { return switchIsHz; }
 
-	float getZoomFactor() {
-		return currentZoomFactor;
-	}
-
-	void setSwitchToHz() {
-		switchIsHz = true;
-		if (haveRqdPointers) {
-			pHzContainer->setVisible(true);
-			pNoteContainer->setVisible(false);
-		}
-	}
-	void setSwitchToNote() {
-		switchIsHz = false;
-		if (haveRqdPointers) {
-			pHzContainer->setVisible(false);
-			pNoteContainer->setVisible(true);
-		}
+	void updateViewVisibility() {
+		if (!haveRqdPointers) return;
+		pHzContainer->setVisible(switchIsHz);
+		pNoteContainer->setVisible(!switchIsHz);
 	}
 
 	void close() override {
@@ -61,50 +47,42 @@ public:
 
 		if (!pControl) return;
 
-
 		int tag = pControl->getTag();
 		if ((tag == CIRCULATE_PARAMS::kSetSwitch) && haveRqdPointers) {
 
 			switchIsHz = !switchIsHz;
-			pHzContainer->setVisible(switchIsHz);
-			pNoteContainer->setVisible(!switchIsHz);
-
-
+			updateViewVisibility();
 		}
 
 		VST3Editor::valueChanged(pControl);
-
 	}
-
-
 
 	VSTGUI::CView* verifyView(VSTGUI::CView* view, const VSTGUI::UIAttributes& attributes, const VSTGUI::IUIDescription* description) override {
 	
-
+		// Get pointers to the two types of center control
 		if (auto name = attributes.getAttributeValue("name"))
 		{
 			if (*name == "HzControl")
 			{
 				pHzContainer = dynamic_cast<VSTGUI::CViewContainer*> (view);
-				if (pHzContainer) pHzContainer->setVisible(switchIsHz);
 			}
 			else if (*name == "NoteControl")
 			{
 				pNoteContainer = dynamic_cast<VSTGUI::CViewContainer*> (view);
-				if (pNoteContainer) pNoteContainer->setVisible(!switchIsHz);
 			}
 		}
 
 		if (pHzContainer && pNoteContainer) haveRqdPointers = true;
 
+		updateViewVisibility();
+
 		return VST3Editor::verifyView(view, attributes, description);
 	};
 
 private:
-	float currentZoomFactor = 1.0;
 	VSTGUI::CViewContainer* pNoteContainer = nullptr;
 	VSTGUI::CViewContainer* pHzContainer = nullptr;
-
+	
 	bool switchIsHz = true;
 	bool haveRqdPointers = false;
 };

@@ -5,10 +5,11 @@
 #include "controller.h"
 #include "cids.h"
 #include "base/source/fstreamer.h"
-#include "CustomEditor.h"
 
 #define MAX_ZOOM_FACTOR_LIMIT 16
 #define MIN_ZOOM_FACTOR_LIMIT 0.1
+
+
 
 using namespace Steinberg;
 
@@ -27,8 +28,6 @@ tresult PLUGIN_API CirculateController::initialize (FUnknown* context)
 	{
 		return result;
 	}
-
-	
 
 	CIRCULATE_PARAMS::registerParameters(parameters);
 
@@ -78,20 +77,6 @@ tresult PLUGIN_API CirculateController::setComponentState (IBStream* state)
 	setParamNormalized(CIRCULATE_PARAMS::kBypass, bypass);
 	setParamNormalized(CIRCULATE_PARAMS::kFeed, feed);
 
-	if (!currentEditor) return kResultOk;
-
-	auto* editor = dynamic_cast<CustomEditor*>(currentEditor);
-
-	// Update UI with type used upon preset creation
-	if (type > 0.5f) {
-		editor->setSwitchToNote();
-
-	}
-	else {
-		editor->setSwitchToHz();
-	}
-
-
 	return kResultOk;
 }
 
@@ -116,7 +101,6 @@ tresult PLUGIN_API CirculateController::setState (IBStream* state)
 
 		}
 
-
 	}
 
 	return kResultTrue;
@@ -127,18 +111,11 @@ tresult PLUGIN_API CirculateController::getState (IBStream* state)
 {
 	if (state) {
 
-		currentZoomFactor = 1.0f;
-		if (currentEditor) {
-
-			if (currentEditor = static_cast<CustomEditor*>(currentEditor)) {
-				currentZoomFactor = currentEditor->getZoomFactor();
-
-			};
-		}
-
+		
 		Steinberg::IBStreamer streamer(state, kLittleEndian);
 		streamer.writeInt32(kZoomFactorID);
 		streamer.writeDouble(currentZoomFactor);
+		// don't need to write the switch state as it is stored in the processor
 
 	}
 
@@ -148,26 +125,34 @@ tresult PLUGIN_API CirculateController::getState (IBStream* state)
 //------------------------------------------------------------------------
 IPlugView* PLUGIN_API CirculateController::createView (FIDString name)
 {
-	// Here the Host wants to open your editor (if you have one)
 	if (FIDStringsEqual (name, Vst::ViewType::kEditor))
 	{
 	
 		currentEditor = new CustomEditor (this, "view", "editor.uidesc");
 
-
-		// If preset loaded when UI was closed then load the correct center page
-		auto* customEditor = static_cast<CustomEditor*>(currentEditor);
+		// Get state of switch
 		if (getParamNormalized(CIRCULATE_PARAMS::kSetSwitch) > 0.5) {
-			customEditor->setSwitchToNote();
+			switchIsHzState = false;
 		}
 		else {
-			customEditor->setSwitchToHz();
+			switchIsHzState = true;
+		}
+
+		auto* customEditor = static_cast<CustomEditor*>(currentEditor);
+		if (customEditor) {
+			// Update editor
+			customEditor->setSwitchToHz(switchIsHzState);
+			customEditor->setZoomFactor(currentZoomFactor);
+			
 		}
 
 		return currentEditor;
 	}
 	return nullptr;
 }
+
+
+
 
 //------------------------------------------------------------------------
 } // namespace CirculateVST
