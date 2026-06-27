@@ -23,7 +23,11 @@ public:
 	
 	}
 	
-	void setSwitchToHz(bool isHz) { switchIsHz = isHz; }
+	void setSwitchToHz(bool isHz) { 
+		switchIsHz = isHz; 
+		updateViewVisibility();
+	
+	}
 	bool isHzMode() const { return switchIsHz; }
 
 	void updateViewVisibility() {

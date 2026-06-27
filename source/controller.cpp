@@ -83,11 +83,32 @@ tresult PLUGIN_API CirculateController::setComponentState (IBStream* state)
 //------------------------------------------------------------------------
 tresult PLUGIN_API CirculateController::setState (IBStream* state)
 {
+
+	// Get state of switch
+	if (getParamNormalized(CIRCULATE_PARAMS::kSetSwitch) > 0.5) {
+		switchIsHzState = false;
+	}
+	else {
+		switchIsHzState = true;
+	}
+
+	// Update view anyway, as not saved in state
+	if (currentEditor) {
+		auto* my_editor = dynamic_cast<CustomEditor*>(currentEditor);
+		if (my_editor) {
+			my_editor->setSwitchToHz(switchIsHzState);
+		}
+	}
+
+
 	if (state) {
 		Steinberg::IBStreamer streamer(state, kLittleEndian);
 		int id = -1;
 		double value = 0;
 		if (streamer.readInt32(id) && streamer.readDouble(value)) {
+
+
+		
 
 			if (id == kZoomFactorID) {
 
@@ -100,6 +121,9 @@ tresult PLUGIN_API CirculateController::setState (IBStream* state)
 			}
 
 		}
+
+
+
 
 	}
 
