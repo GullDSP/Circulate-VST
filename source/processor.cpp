@@ -6,7 +6,7 @@
 #include "cids.h"
 #include "pluginterfaces/vst/ivstparameterchanges.h"
 #include "base/source/fstreamer.h"
-
+#include "DenormalProtection.h"
 
 using namespace Steinberg;
 
@@ -70,10 +70,24 @@ tresult PLUGIN_API CirculateProcessor::terminate ()
 	return AudioEffect::terminate ();
 }
 
+Steinberg::tresult PLUGIN_API CirculateProcessor::setProcessing(Steinberg::TBool state)
+{
+	if (state) {
+		AudioEffect[0].reset();
+		AudioEffect[1].reset();
+
+	}
+
+	return AudioEffect::setProcessing(state);
+}
+
 //------------------------------------------------------------------------
 tresult PLUGIN_API CirculateProcessor::setActive (TBool state)
 {
-	//--- called when the Plug-in is enable/disable (On/Off) -----
+	if (state) {
+		AudioEffect[0].reset();
+		AudioEffect[1].reset();
+	}
 	return AudioEffect::setActive (state);
 }
 
@@ -81,8 +95,7 @@ tresult PLUGIN_API CirculateProcessor::setActive (TBool state)
 tresult PLUGIN_API CirculateProcessor::process (Vst::ProcessData& data)
 {
 
-	//////////////////////////////////////////////
-
+	DenormalHandler AntiDenormal;
 
 	// Pre-Fill param values with last value (to prevent previous
 	// block being re-read
@@ -127,8 +140,6 @@ tresult PLUGIN_API CirculateProcessor::process (Vst::ProcessData& data)
 	if (Params) {
 		Params->smoothAllParameters();
 	}
-
-
 
  	if (!data.numInputs) {
 		return kResultOk;
@@ -176,7 +187,12 @@ tresult PLUGIN_API CirculateProcessor::process (Vst::ProcessData& data)
 		}
 	}
 
-	
+	if (numOutChan > numInChan) {
+		for (int c = numChan; c < numOutChan; c++) {
+			memcpy(data.outputs[0].channelBuffers32[c], data.outputs[0].channelBuffers32[0], sizeof(float) * data.numSamples);
+		}
+	}
+
 	return kResultOk;
 }
 
@@ -187,32 +203,18 @@ tresult PLUGIN_API CirculateProcessor::setupProcessing (Vst::ProcessSetup& newSe
 	Setup.blockSize = newSetup.maxSamplesPerBlock;
 	Setup.sampleRate = newSetup.sampleRate;
 
-
 	AudioEffect[0].setSampleRateBlockSize(Setup);
 	AudioEffect[1].setSampleRateBlockSize(Setup);
 
 
 	// Setup can be called multiple times without calling processors destructor.
-	// If so, delete the old one
+	// so need to check 
 
-	if (Params)
+	if (!Params)
 	{
-		delete Params;
-		Params = nullptr;
+		Params = new CIRCULATE_PARAMS::AudioEffectParameters(newSetup.maxSamplesPerBlock, newSetup.sampleRate);
 	}
 
-	// Create Parameter handler and Initialise Defaults
-
-	Params = new CIRCULATE_PARAMS::AudioEffectParameters(newSetup.maxSamplesPerBlock, newSetup.sampleRate);
-
-	Params->Depth.fillWith(DEFAULT_DEPTH);
-	Params->Center.fillWith(DEFAULT_CENTER);
-	Params->Note.fillWith(DEFAULT_NOTE);
-	Params->Focus.fillWith(DEFAULT_FOCUS);
-	Params->CenterType.fillWith(DEFAULT_SWITCH);
-	Params->NoteOffset.fillWith(DEFAULT_OFFSET);
-	Params->Feedback.fillWith(DEFAULT_FEED);
-	
 	// Send pointer to params to effect
 	AudioEffect[0].getParams(Params);
 	AudioEffect[1].getParams(Params);
@@ -280,6 +282,7 @@ tresult PLUGIN_API CirculateProcessor::getState (IBStream* state)
 	}
 	
 	IBStreamer streamer (state, kLittleEndian);
+
 	
 	streamer.writeDouble(Params->Depth.getLastValue());
 	streamer.writeDouble(Params->Center.getLastValue());

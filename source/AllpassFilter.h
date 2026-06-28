@@ -36,6 +36,8 @@ public:
 			smoothFactor = 1.0 - exp(-1.0 / ( smooth_s * sample_rate));
 		}
 
+		bool force_snap = true; // tells next calculate coefficients call only to set current to target
+
 	};
 
 	void setSampleRateBlockSize(HELPERS::SetupInfo Setup) {
@@ -72,6 +74,13 @@ public:
 		// BLT warp
 		State.g_target = tan(State.g_target);
 		State.k_target = 1.0 / (2.0 * q_actual);
+
+		if (State.force_snap) {
+			State.force_snap = false;
+			State.k = State.k_target;
+			State.g = State.g_target;
+			return;
+		}
 
 		//Smooth				
 		double diff_k = State.k_target - State.k;
@@ -124,13 +133,8 @@ public:
 		s1 = BP2 - old_s1;
 		s2 = old_s2 + g * BP2; 
 
-		// denormal protection
-		if (std::abs(s1) < 1e-20) s1 = 0.0;
-		if (std::abs(s2) < 1e-20) s2 = 0.0;
-
 		return x - 4.0 * R * BP;
 	}
-
 
 private:
 	// Memory

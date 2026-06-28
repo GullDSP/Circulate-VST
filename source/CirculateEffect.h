@@ -42,6 +42,18 @@ public:
 		mPreviousActiveStages = mNumActiveStages;
 
 	}
+
+	void reset() {
+		for (int i = 0; i < MAX_NUM_STAGES; i++) {
+			// send to each allpass
+			AP[i].resetState();
+			if (pState) {
+				pState->force_snap = true;
+			}
+		}
+		currentSample = 0.0f;
+		
+	}
 	/// <summary>
 	/// Set pointer used to access host/plugin parameters
 	/// </summary>
@@ -156,27 +168,16 @@ private:
 	HELPERS::SetupInfo Setup;
 
 	double mCenterHz = DEFAULT_CENTER;
-	double mFocus	= DEFAULT_FOCUS;
-	double mNoteNumHz		= 0;
-	double mNoteOffsetHz		= 0;
-	int	mNumActiveStages	= DEFAULT_DEPTH * MAX_NUM_STAGES;
+	double mFocus = DEFAULT_FOCUS;
+	double mNoteNumHz = 0;
+	double mNoteOffsetHz = 0;
+	int	mNumActiveStages = DEFAULT_DEPTH * MAX_NUM_STAGES;
 	int mPreviousActiveStages = DEFAULT_DEPTH * MAX_NUM_STAGES;
-	bool mUseHzControl	 = true;
+	bool mUseHzControl = true;
 	double maxAllowedFreq = 0;
 	float currentSample = 0;
 
 	HELPERS::ValueSmoother NoteControlSmoother;
-
-	const float jitterOffsets[MAX_NUM_STAGES] = {
-	 0.0f, -0.054f,  0.012f, -0.068f,  0.045f, -0.003f,  0.061f, -0.027f,
-	-0.019f,  0.038f, -0.042f,  0.005f,  0.057f, -0.011f,  0.024f, -0.063f,
-	 0.008f, -0.035f,  0.052f, -0.048f,  0.016f,  0.067f, -0.022f,  0.039f,
-	-0.007f,  0.049f, -0.059f,  0.015f, -0.029f,  0.064f, -0.014f,  0.033f,
-	 0.001f, -0.044f,  0.028f, -0.009f,  0.055f, -0.037f,  0.021f, -0.066f,
-	 0.041f, -0.025f,  0.018f,  0.069f, -0.051f,  0.004f, -0.032f,  0.047f,
-	-0.017f,  0.059f, -0.006f,  0.026f, -0.043f,  0.013f, -0.062f,  0.036f,
-	-0.028f,  0.053f, -0.010f,  0.044f, -0.056f,  0.002f, -0.039f,  0.070f
-	};
 
 	/// <summary>
 	/// Fetches current frequency parameters for this sample, determines whether Hz or note is

@@ -25,7 +25,6 @@ public:
     // Create function
 	static Steinberg::FUnknown* createInstance (void* /*context*/)
 	{
-
 		return (Steinberg::Vst::IEditController*)new CirculateController;
 	}
 
@@ -45,7 +44,6 @@ public:
 		/// to track current zoom
 	void onZoomChanged(VSTGUI::VST3Editor* editor, double newZoom) override {
 		currentZoomFactor = newZoom;
-
 	};
 	
 	// called when plugin window closed
@@ -59,6 +57,24 @@ public:
 		currentEditor = nullptr;
 	}
 
+	void updateSwitchState(float value) {
+
+		if (value > 0.5) {
+			switchIsHzState = false; // ST
+		}
+		else {
+			switchIsHzState = true;  // Hz
+		}
+
+		if (currentEditor) {
+			auto* my_editor = dynamic_cast<CustomEditor*>(currentEditor);
+			if (my_editor) {
+				my_editor->setSwitchToHz(switchIsHzState);
+			}
+		}
+
+	}
+
  	//---Interface---------
 	DEFINE_INTERFACES
 		// Here you can add more supported VST3 interfaces
@@ -70,7 +86,6 @@ public:
 protected:
 	float currentZoomFactor = 1.0;
 	const int kZoomFactorID = 201;
-
 	bool switchIsHzState = true;
 
 	VSTGUI::VST3Editor* currentEditor = nullptr;

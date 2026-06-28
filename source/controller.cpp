@@ -54,7 +54,6 @@ tresult PLUGIN_API CirculateController::setComponentState (IBStream* state)
 
 	IBStreamer streamer(state, kLittleEndian);
 	
-
 	double depth, center, note, focus, type, offset, bypass, feed;
 
 	// Read values in the SAME ORDER the processor wrote them
@@ -77,6 +76,8 @@ tresult PLUGIN_API CirculateController::setComponentState (IBStream* state)
 	setParamNormalized(CIRCULATE_PARAMS::kBypass, bypass);
 	setParamNormalized(CIRCULATE_PARAMS::kFeed, feed);
 
+	updateSwitchState(type);
+
 	return kResultOk;
 }
 
@@ -85,30 +86,15 @@ tresult PLUGIN_API CirculateController::setState (IBStream* state)
 {
 
 	// Get state of switch
-	if (getParamNormalized(CIRCULATE_PARAMS::kSetSwitch) > 0.5) {
-		switchIsHzState = false;
-	}
-	else {
-		switchIsHzState = true;
-	}
+	float switch_value = getParamNormalized(CIRCULATE_PARAMS::kSetSwitch);
 
-	// Update view anyway, as not saved in state
-	if (currentEditor) {
-		auto* my_editor = dynamic_cast<CustomEditor*>(currentEditor);
-		if (my_editor) {
-			my_editor->setSwitchToHz(switchIsHzState);
-		}
-	}
-
+	updateSwitchState(switch_value);
 
 	if (state) {
 		Steinberg::IBStreamer streamer(state, kLittleEndian);
 		int id = -1;
 		double value = 0;
 		if (streamer.readInt32(id) && streamer.readDouble(value)) {
-
-
-		
 
 			if (id == kZoomFactorID) {
 
@@ -122,9 +108,6 @@ tresult PLUGIN_API CirculateController::setState (IBStream* state)
 
 		}
 
-
-
-
 	}
 
 	return kResultTrue;
@@ -134,8 +117,6 @@ tresult PLUGIN_API CirculateController::setState (IBStream* state)
 tresult PLUGIN_API CirculateController::getState (IBStream* state)
 {
 	if (state) {
-
-		
 		Steinberg::IBStreamer streamer(state, kLittleEndian);
 		streamer.writeInt32(kZoomFactorID);
 		streamer.writeDouble(currentZoomFactor);
@@ -151,24 +132,17 @@ IPlugView* PLUGIN_API CirculateController::createView (FIDString name)
 {
 	if (FIDStringsEqual (name, Vst::ViewType::kEditor))
 	{
-	
+
+
 		currentEditor = new CustomEditor (this, "view", "editor.uidesc");
-
-		// Get state of switch
-		if (getParamNormalized(CIRCULATE_PARAMS::kSetSwitch) > 0.5) {
-			switchIsHzState = false;
-		}
-		else {
-			switchIsHzState = true;
-		}
-
 		auto* customEditor = static_cast<CustomEditor*>(currentEditor);
 		if (customEditor) {
 			// Update editor
 			customEditor->setSwitchToHz(switchIsHzState);
 			customEditor->setZoomFactor(currentZoomFactor);
-			
+
 		}
+
 
 		return currentEditor;
 	}

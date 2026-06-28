@@ -7,7 +7,6 @@
 #include "vstgui/uidescription/icontroller.h"
 #include "vstgui/uidescription/uiviewswitchcontainer.h"
 #include "vstgui/uidescription/uiattributes.h"
-
 /// <summary>
 /// Custom editor, most of this is just manually switching the views for the center control
 /// as the viewswitchcontainer was buggy in ableton
@@ -22,7 +21,7 @@ public:
 		VST3Editor::setAllowedZoomFactors(zoomFactors);
 	
 	}
-	
+
 	void setSwitchToHz(bool isHz) { 
 		switchIsHz = isHz; 
 		updateViewVisibility();
@@ -31,9 +30,10 @@ public:
 	bool isHzMode() const { return switchIsHz; }
 
 	void updateViewVisibility() {
-		if (!haveRqdPointers) return;
-		pHzContainer->setVisible(switchIsHz);
-		pNoteContainer->setVisible(!switchIsHz);
+		if (pNoteContainer && pHzContainer) {
+			pHzContainer->setVisible(switchIsHz);
+			pNoteContainer->setVisible(!switchIsHz);
+		}
 	}
 
 	void close() override {
@@ -42,7 +42,6 @@ public:
 		pHzContainer = nullptr;
 
 		switchIsHz = true;
-		haveRqdPointers = false;
 
 		VST3Editor::close();
 	}
@@ -52,9 +51,10 @@ public:
 		if (!pControl) return;
 
 		int tag = pControl->getTag();
-		if ((tag == CIRCULATE_PARAMS::kSetSwitch) && haveRqdPointers) {
+		if ((tag == CIRCULATE_PARAMS::kSetSwitch)) {
+			float value = pControl->getValue();
+			switchIsHz = (value < 0.5);
 
-			switchIsHz = !switchIsHz;
 			updateViewVisibility();
 		}
 
@@ -76,17 +76,14 @@ public:
 			}
 		}
 
-		if (pHzContainer && pNoteContainer) haveRqdPointers = true;
-
 		updateViewVisibility();
 
 		return VST3Editor::verifyView(view, attributes, description);
 	};
 
 private:
-	VSTGUI::CViewContainer* pNoteContainer = nullptr;
-	VSTGUI::CViewContainer* pHzContainer = nullptr;
-	
+
+	VSTGUI::SharedPointer<VSTGUI::CViewContainer> pNoteContainer = nullptr;
+	VSTGUI::SharedPointer<VSTGUI::CViewContainer> pHzContainer = nullptr;
 	bool switchIsHz = true;
-	bool haveRqdPointers = false;
 };

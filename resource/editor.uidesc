@@ -117,7 +117,7 @@
 		"custom": {
 			"FocusDrawing": {},
 			"VST3Editor": {
-				"Path": "editor.uidesc"
+				"Path": "C:\\Users\\anees\\Documents\\VST DEV\\Circulate\\resource\\editor.uidesc"
 			},
 			"UIGridController": {
 				"Grids": "1x 1,5x 5,10x 10,12x 12,15x 15",
@@ -127,7 +127,7 @@
 				"SelectedTemplate": "view"
 			},
 			"UIEditController": {
-				"EditViewScale": "1",
+				"EditViewScale": "2",
 				"EditorSize": "0, 0, 1218, 617",
 				"EncodeBitmaps": "true",
 				"SplitViewSize_0_0": "0.6971235194585448935455929131421726197004",
@@ -520,7 +520,7 @@
 							"text-inset": "0, 0",
 							"text-rotation": "0",
 							"text-shadow-offset": "1, 1",
-							"title": "v2.0.0",
+							"title": "v2.0.1",
 							"transparent": "false",
 							"uidesc-label": "Title",
 							"value-precision": "2",

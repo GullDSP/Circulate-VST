@@ -52,7 +52,7 @@ public:
 	Steinberg::tresult PLUGIN_API getState (Steinberg::IBStream* state) SMTG_OVERRIDE;
 
 	Steinberg::tresult PLUGIN_API setBusArrangements(Steinberg::Vst::SpeakerArrangement* inputs, Steinberg::int32 numIns, Steinberg::Vst::SpeakerArrangement* outputs, Steinberg::int32 numOuts) SMTG_OVERRIDE;
-
+	Steinberg::tresult PLUGIN_API CirculateProcessor::setProcessing(Steinberg::TBool state);
 
 //------------------------------------------------------------------------
 protected:
@@ -60,7 +60,6 @@ protected:
 	CIRCULATE_PARAMS::AudioEffectParameters* Params = nullptr;
 
 	bool isBypassed = false;
-
 	int lastBlockSize = 0;
 	
 };

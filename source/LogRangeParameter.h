@@ -56,7 +56,7 @@ public:
             if (text[i] == '\0') break;
         }
     }
-
+    // For when a value is typed into the control
     bool fromString(const Steinberg::Vst::TChar* string, Steinberg::Vst::ParamValue& valueNormalized) const override {
 
         const char16_t* endptr = nullptr;

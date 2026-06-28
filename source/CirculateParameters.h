@@ -279,7 +279,20 @@ namespace CIRCULATE_PARAMS {
 			Depth.setSmoothTime(0, sampleRate);
 			CenterType.setSmoothTime(0, sampleRate);
 			Note.setSmoothTime(0, sampleRate); // Note is smoothed after conversion to Hz in main loop
+
+			setDefaults();
 		}
+
+		void setDefaults() {
+			Depth.fillWith(DEFAULT_DEPTH);
+			Center.fillWith(DEFAULT_CENTER);
+			Note.fillWith(DEFAULT_NOTE);
+			Focus.fillWith(DEFAULT_FOCUS);
+			CenterType.fillWith(DEFAULT_SWITCH);
+			NoteOffset.fillWith(DEFAULT_OFFSET);
+			Feedback.fillWith(DEFAULT_FEED);
+		}
+
 		/// <summary>
 		/// Return pointer to a parameter unit
 		/// </summary>
