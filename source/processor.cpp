@@ -214,6 +214,10 @@ tresult PLUGIN_API CirculateProcessor::setupProcessing (Vst::ProcessSetup& newSe
 	{
 		Params = new CIRCULATE_PARAMS::AudioEffectParameters(newSetup.maxSamplesPerBlock, newSetup.sampleRate);
 	}
+	else {
+		Params->reInitialise(newSetup.maxSamplesPerBlock, newSetup.sampleRate);
+		
+	}
 
 	// Send pointer to params to effect
 	AudioEffect[0].getParams(Params);

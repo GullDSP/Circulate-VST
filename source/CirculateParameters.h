@@ -151,7 +151,6 @@ namespace CIRCULATE_PARAMS {
 			smoothedValue = default_value;
 			id = paramID;
 			smoothedValue = default_value;
-			this->maxBlockSize = maxBlockSize;
 			this->currentBlockSize = maxBlockSize;
 
 			if (sampleAccurate) {
@@ -218,6 +217,10 @@ namespace CIRCULATE_PARAMS {
 		}
 		void setCurrentBlockSize(int newSize) {
 
+			if (newSize > currentBlockSize) {
+				BlockValues.resize(newSize, lastExplicit);
+
+			}
 
 			currentBlockSize = newSize;
 
@@ -238,7 +241,6 @@ namespace CIRCULATE_PARAMS {
 		double smoothedValue = 0;
 		double smoothFactor = 0.005;
 		int id = 0;
-		int maxBlockSize = 0;
 		int currentBlockSize = 0;
 
 	};
@@ -269,18 +271,22 @@ namespace CIRCULATE_PARAMS {
 			ParameterList.push_back(&CenterType);
 			ParameterList.push_back(&NoteOffset);
 			ParameterList.push_back(&Feedback);
+		
+			initialiseSmoothers(sampleRate);
+			setDefaults();
+		}
+
+		void initialiseSmoothers(int sample_rate) {
 			// Initialise smooth times. 20ms ~ (50Hz)
-			Center.setSmoothTime(20, sampleRate);
-			Focus.setSmoothTime(20, sampleRate);
-			NoteOffset.setSmoothTime(20, sampleRate);
-			Feedback.setSmoothTime(10, sampleRate);
+			Center.setSmoothTime(20, sample_rate);
+			Focus.setSmoothTime(20, sample_rate);
+			NoteOffset.setSmoothTime(20, sample_rate);
+			Feedback.setSmoothTime(10, sample_rate);
 
 			// Disable smoothing on discrete parameters
-			Depth.setSmoothTime(0, sampleRate);
-			CenterType.setSmoothTime(0, sampleRate);
-			Note.setSmoothTime(0, sampleRate); // Note is smoothed after conversion to Hz in main loop
-
-			setDefaults();
+			Depth.setSmoothTime(0, sample_rate);
+			CenterType.setSmoothTime(0, sample_rate);
+			Note.setSmoothTime(0, sample_rate); // Note is smoothed after conversion to Hz in main loop
 		}
 
 		void setDefaults() {
@@ -309,18 +315,30 @@ namespace CIRCULATE_PARAMS {
 			}
 			return nullptr;
 		}
+
+		void reInitialise(int block_size, int sample_rate) {
+			int blockSize = block_size;
+
+			for (auto& param : ParameterList) {
+
+				param->setCurrentBlockSize(block_size);
+				param->fillWithLastKnown();
+
+			}
+
+			initialiseSmoothers(sample_rate);
+
+		}
 		/// <summary>
 		/// Call in process block to update for variable block sizes
 		/// </summary>
 		/// <param name="size"></param>
-		void setCurrentBlockSizeAndPreFill(int size) {
+		void setCurrentBlockSizeAndPreFill(int block_size) {
+			blockSize = block_size;
 			for (auto& param : ParameterList) {
-
-				param->setCurrentBlockSize(size);
 				param->fillWithLastKnown();
-		
-			}
 
+			}
 		}
 		void smoothAllParameters() {
 			for (auto& param : ParameterList) {
